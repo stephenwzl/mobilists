@@ -35,7 +35,7 @@
 <link href="/mobilists/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android, iOS, mobile, eleme" />
+  <meta name="keywords" content="Universal Links,Wechat,iOS," />
 
 
 
@@ -53,19 +53,34 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案
+
+WXAppExtendObject: 这个用法自查
+Universal Links: 文档在这里 ，工作原理，如何实现，直接参考官方文档即可
+
+但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题
+App Sear">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://eleme.io/mobilists/2016/01/08/hello-world/index.html">
+<meta property="og:title" content="突破微信跳转限制－Universal Links那些坑">
+<meta property="og:url" content="http://eleme.io/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/index.html">
 <meta property="og:site_name" content="Eleme Mobilists">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-01-08T08:00:06.000Z">
+<meta property="og:description" content="微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案
+
+WXAppExtendObject: 这个用法自查
+Universal Links: 文档在这里 ，工作原理，如何实现，直接参考官方文档即可
+
+但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题
+App Sear">
+<meta property="og:updated_time" content="2016-01-11T05:21:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="突破微信跳转限制－Universal Links那些坑">
+<meta name="twitter:description" content="微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案
+
+WXAppExtendObject: 这个用法自查
+Universal Links: 文档在这里 ，工作原理，如何实现，直接参考官方文档即可
+
+但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题
+App Sear">
 
 
 
@@ -77,7 +92,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | Eleme Mobilists </title>
+  <title> 突破微信跳转限制－Universal Links那些坑 | Eleme Mobilists </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -93,6 +108,15 @@ Quick">
 <![endif]-->
   
 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72254761-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -217,7 +241,7 @@ Quick">
             
             
               
-                Hello World
+                突破微信跳转限制－Universal Links那些坑
               
             
           </h1>
@@ -226,14 +250,36 @@ Quick">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-08T16:00:06+08:00" content="2016-01-08">
-              2016-01-08
+            <time itemprop="dateCreated" datetime="2016-01-10T21:43:29+08:00" content="2016-01-10">
+              2016-01-10
             </time>
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/mobilists/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/10/突破微信跳转限制－Universal-Links那些坑/" itemprop="commentsCount"></span>
+              </a>
+            </span>
             
           
 
@@ -250,22 +296,64 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><p>微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案</p>
+<ul>
+<li>WXAppExtendObject: 这个用法自查</li>
+<li>Universal Links: 文档在<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html" target="_blank" rel="external">这里</a> ，工作原理，如何实现，直接参考官方文档即可</li>
+</ul>
+<p>但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题</p>
+<h2 id="App_Search_API_Validation_Tool"><a href="#App_Search_API_Validation_Tool" class="headerlink" title="App Search API Validation Tool"></a>App Search API Validation Tool</h2><hr>
+<p>apple官方有出一个工具－<a href="https://search.developer.apple.com/appsearch-validation-tool/" target="_blank" rel="external">App Search API Validation Tool</a>，这个工具可以测试网站对iOS9 search API的支持，其中包括了对Universal Links的配置检查</p>
+<p>但是这个工具对我们网站检查的结果是 <code>passed</code></p>
+<h2 id="iOS_u7AEF_u8868_u73B0_u5206_u6790"><a href="#iOS_u7AEF_u8868_u73B0_u5206_u6790" class="headerlink" title="iOS端表现分析"></a>iOS端表现分析</h2><hr>
+<p>iOS 9.2开始具体变现如下：</p>
+<ul>
+<li>Safari中点击符合条件的Link，没有跳转App，但是长按链接能弹出用饿了么打开链接的选项</li>
+<li>信息app内点击指定Link，works</li>
+<li>微信中打开对应的web，点击符合条件的Link，没有跳转App</li>
+</ul>
+<p>看起来iOS 9.2肯定是有修改相关的机制，但是Apple并没有提供相应的修改说明（反正我们没有搜到），这个也符合apple一贯的作风</p>
+<h2 id="u7B54_u6848"><a href="#u7B54_u6848" class="headerlink" title="答案"></a>答案</h2><p>感谢 <a href="https://dev.branch.io" target="_blank" rel="external">Branch Metrics</a>，我在<a href="https://dev.branch.io/recipes/branch_universal_links/ios/#which-appsbrowsers-support-universal-links" target="_blank" rel="external">这里</a>找到了答案</p>
+<p>贴上所有的注意点</p>
+<ul>
+<li>Universal Links will not work if you paste the link into the browser URL field.</li>
+<li>Universal Links work with a user driven <code>&lt;a href=&quot;...&quot;&gt;</code> element click across domains. Example: if there is a Universal Link on google.com pointing to bnc.lt, it will open the app.</li>
+<li>Universal Links will not work with a user driven <code>&lt;a href=&quot;...&quot;&gt;</code> element click on the same domain. Example: if there is a Universal Link on google.com pointing to a different Universal Link on google.com, it will not open the app.</li>
+<li>Universal Links cannot be triggered via Javascript (in window.onload or via a .click() call on an <code>&lt;a&gt;</code> element), unless it is part of a user action.</li>
+</ul>
+<p>也就是从iOS 9.2开始，在相同的domain内Universal Links是不work的，必须要跨域才生效，我们实测值需要跨子域名即可，比如 m.domain.com 跳转 o.domain.com 是可以触发跳转App</p>
+<p>Written by 饿了么iOS组 － Bryan</p>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/mobilists/tags/Universal-Links/" rel="tag">#Universal Links</a>
+          
+            <a href="/mobilists/tags/Wechat/" rel="tag">#Wechat</a>
+          
+            <a href="/mobilists/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/mobilists/2016/01/09/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
@@ -288,6 +376,10 @@ Quick">
 
         
   <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
     
   </div>
 
@@ -330,21 +422,21 @@ Quick">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/mobilists/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/mobilists/categories">
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/mobilists/tags">
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -383,7 +475,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#App_Search_API_Validation_Tool"><span class="nav-number">1.</span> <span class="nav-text">App Search API Validation Tool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS_u7AEF_u8868_u73B0_u5206_u6790"><span class="nav-number">2.</span> <span class="nav-text">iOS端表现分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u7B54_u6848"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -439,6 +531,27 @@ Quick">
     
     
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'elememobileblog';
+      var disqus_identifier = '2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
+      var disqus_title = '突破微信跳转限制－Universal Links那些坑';
+      var disqus_url = 'http://eleme.io/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
   
 
 
