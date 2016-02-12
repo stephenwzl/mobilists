@@ -41,7 +41,7 @@
 <link href="/mobilists/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android, iOS, mobile, eleme" />
+  <meta name="keywords" content="Custom Presentation,UIPresentationController,iOS,iOS 8," />
 
 
 
@@ -59,15 +59,17 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Eleme Mobilists">
-<meta property="og:url" content="http://eleme.io/mobilists/index.html">
+<meta name="description" content="现在大多数 app 都已经支持 iOS 7+ 有一段时间了，距离支持 iOS 8+ 的时间也是屈指可数（希望如此…）了。iOS 8 新增的 API 中有一个 UIPresentationController 一直比较陌生，本文将简略介绍使用 UIPresentationController 来实现一个自定义 presentation 的过程，然后详细解读 UIKit 是如何操作这一过程以及我们能够">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解 iOS 8 `UIPresentationController` Custom Presentation">
+<meta property="og:url" content="http://eleme.io/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/index.html">
 <meta property="og:site_name" content="Eleme Mobilists">
-<meta property="og:description">
+<meta property="og:description" content="现在大多数 app 都已经支持 iOS 7+ 有一段时间了，距离支持 iOS 8+ 的时间也是屈指可数（希望如此…）了。iOS 8 新增的 API 中有一个 UIPresentationController 一直比较陌生，本文将简略介绍使用 UIPresentationController 来实现一个自定义 presentation 的过程，然后详细解读 UIKit 是如何操作这一过程以及我们能够">
+<meta property="og:image" content="http://eleme.io/mobilists/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/final_result.gif">
+<meta property="og:updated_time" content="2016-02-12T13:28:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eleme Mobilists">
-<meta name="twitter:description">
+<meta name="twitter:title" content="详解 iOS 8 `UIPresentationController` Custom Presentation">
+<meta name="twitter:description" content="现在大多数 app 都已经支持 iOS 7+ 有一段时间了，距离支持 iOS 8+ 的时间也是屈指可数（希望如此…）了。iOS 8 新增的 API 中有一个 UIPresentationController 一直比较陌生，本文将简略介绍使用 UIPresentationController 来实现一个自定义 presentation 的过程，然后详细解读 UIKit 是如何操作这一过程以及我们能够">
 
 
 
@@ -85,7 +87,7 @@
   };
 </script>
 
-  <title> Eleme Mobilists </title>
+  <title> 详解 iOS 8 `UIPresentationController` Custom Presentation | Eleme Mobilists </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -113,9 +115,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,15 +214,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-
-    
-      
 
   
   
@@ -242,10 +236,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/" itemprop="url">
-                  详解 iOS 8 `UIPresentationController` Custom Presentation
-                </a>
+                详解 iOS 8 `UIPresentationController` Custom Presentation
               
             
           </h1>
@@ -309,9 +300,7 @@
       
 
       
-        
-          
-            <p>现在大多数 app 都已经支持 iOS 7+ 有一段时间了，距离支持 iOS 8+ 的时间也是屈指可数（希望如此…）了。iOS 8 新增的 API 中有一个 <code>UIPresentationController</code> 一直比较陌生，本文将简略介绍使用 <code>UIPresentationController</code> 来实现一个自定义 presentation 的过程，然后详细解读 <code>UIKit</code> 是如何操作这一过程以及我们能够如何地参与其中。</p>
+        <p>现在大多数 app 都已经支持 iOS 7+ 有一段时间了，距离支持 iOS 8+ 的时间也是屈指可数（希望如此…）了。iOS 8 新增的 API 中有一个 <code>UIPresentationController</code> 一直比较陌生，本文将简略介绍使用 <code>UIPresentationController</code> 来实现一个自定义 presentation 的过程，然后详细解读 <code>UIKit</code> 是如何操作这一过程以及我们能够如何地参与其中。</p>
 <h1 id="Final_Result"><a href="#Final_Result" class="headerlink" title="Final Result"></a>Final Result</h1><p>下图是 demo 的效果：黄色背景的 view controller （之后简称vc）present 了一个红色背景的 vc，present 的过程是自定义的，红色背景的 vc 被 present 出来后没有占满整个屏幕，周围有一圈黑色半透明背景可以透视看到黄色 vc。<br><img src="/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/final_result.gif" alt="最终的结果" title="最终的结果"></p>
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p>Demo 的效果用 iOS 7 的自定义 presentation 动画的 API 就能够实现，只需要使 presented vc 的背景色是黑色半透明，然后在上面加一个比自己 view 小一圈的红色区域就行。这里我们先不讨论为什么能够用 iOS 7 的 API 实现了，还需要用 iOS 8 的 <code>UIPresentationController</code>，直接先看如何实现。</p>
 <p>我们创建一个 <code>UIPresentationController</code> 的 subclass，在其中自己管理一个 <code>dimmingView</code>（黑色半透明），并 override 一些方法，在 present 的过程中把 presented vc 的 view 的 <code>frame</code> 设置得小一些，并将其加到 <code>dimmingView</code> 上，然后把 <code>dimmingView</code> 加入到视图结构中去。</p>
@@ -351,264 +340,51 @@
 <hr>
 <p>Written by 饿了么iOS组 － <a href="https://github.com/axl411" target="_blank" rel="external">axl411</a></p>
 
-          
-        
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/" itemprop="url">
-                  突破微信跳转限制－Universal Links那些坑
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-10T21:43:29+08:00" content="2016-01-10">
-              2016-01-10
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/mobilists/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/mobilists/tags/Custom-Presentation/" rel="tag">#Custom Presentation</a>
           
-
+            <a href="/mobilists/tags/UIPresentationController/" rel="tag">#UIPresentationController</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/10/突破微信跳转限制－Universal-Links那些坑/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+            <a href="/mobilists/tags/iOS/" rel="tag">#iOS</a>
           
-
-          
-
-          
+            <a href="/mobilists/tags/iOS-8/" rel="tag">#iOS 8</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案</p>
-<ul>
-<li>WXAppExtendObject: 这个用法自查</li>
-<li>Universal Links: 文档在<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html" target="_blank" rel="external">这里</a> ，工作原理，如何实现，直接参考官方文档即可</li>
-</ul>
-<p>但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题</p>
-<h2 id="App_Search_API_Validation_Tool"><a href="#App_Search_API_Validation_Tool" class="headerlink" title="App Search API Validation Tool"></a>App Search API Validation Tool</h2><hr>
-<p>apple官方有出一个工具－<a href="https://search.developer.apple.com/appsearch-validation-tool/" target="_blank" rel="external">App Search API Validation Tool</a>，这个工具可以测试网站对iOS9 search API的支持，其中包括了对Universal Links的配置检查</p>
-<p>但是这个工具对我们网站检查的结果是 <code>passed</code></p>
-<h2 id="iOS_u7AEF_u8868_u73B0_u5206_u6790"><a href="#iOS_u7AEF_u8868_u73B0_u5206_u6790" class="headerlink" title="iOS端表现分析"></a>iOS端表现分析</h2><hr>
-<p>iOS 9.2开始具体变现如下：</p>
-<ul>
-<li>Safari中点击符合条件的Link，没有跳转App，但是长按链接能弹出用饿了么打开链接的选项</li>
-<li>信息app内点击指定Link，works</li>
-<li>微信中打开对应的web，点击符合条件的Link，没有跳转App</li>
-</ul>
-<p>看起来iOS 9.2肯定是有修改相关的机制，但是Apple并没有提供相应的修改说明（反正我们没有搜到），这个也符合apple一贯的作风</p>
-<h2 id="u7B54_u6848"><a href="#u7B54_u6848" class="headerlink" title="答案"></a>答案</h2><p>感谢 <a href="https://dev.branch.io" target="_blank" rel="external">Branch Metrics</a>，我在<a href="https://dev.branch.io/recipes/branch_universal_links/ios/#which-appsbrowsers-support-universal-links" target="_blank" rel="external">这里</a>找到了答案</p>
-<p>贴上所有的注意点</p>
-<ul>
-<li>Universal Links will not work if you paste the link into the browser URL field.</li>
-<li>Universal Links work with a user driven <code>&lt;a href=&quot;...&quot;&gt;</code> element click across domains. Example: if there is a Universal Link on google.com pointing to bnc.lt, it will open the app.</li>
-<li>Universal Links will not work with a user driven <code>&lt;a href=&quot;...&quot;&gt;</code> element click on the same domain. Example: if there is a Universal Link on google.com pointing to a different Universal Link on google.com, it will not open the app.</li>
-<li>Universal Links cannot be triggered via Javascript (in window.onload or via a .click() call on an <code>&lt;a&gt;</code> element), unless it is part of a user action.</li>
-</ul>
-<p>也就是从iOS 9.2开始，在相同的domain内Universal Links是不work的，必须要跨域才生效，我们实测值需要跨子域名即可，比如 m.domain.com 跳转 o.domain.com 是可以触发跳转App</p>
-<p>Written by 饿了么iOS组 － Bryan</p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/" rel="next" title="突破微信跳转限制－Universal Links那些坑">
+                <i class="fa fa-chevron-left"></i> 突破微信跳转限制－Universal Links那些坑
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/mobilists/2016/01/09/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-09T00:00:00+08:00" content="2016-01-09">
-              2016-01-09
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/mobilists/2016/01/09/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/09/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
 
-  </section>
-
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -616,6 +392,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -635,8 +422,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/mobilists/images/default_avatar.jpg"
@@ -694,6 +490,23 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Final_Result"><span class="nav-number">1.</span> <span class="nav-text">Final Result</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">2.</span> <span class="nav-text">Implementation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIPresentationController"><span class="nav-number">3.</span> <span class="nav-text">UIPresentationController</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The_Presentation_Process"><span class="nav-number">4.</span> <span class="nav-text">The Presentation Process</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why_3F"><span class="nav-number">5.</span> <span class="nav-text">Why?</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -768,6 +581,167 @@
   
 
   
+  
+<script type="text/javascript" src="/mobilists/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   
 
@@ -784,9 +758,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'elememobileblog';
-      var disqus_identifier = 'index.html';
-      var disqus_title = '';
-      var disqus_url = '';
+      var disqus_identifier = '2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/';
+      var disqus_title = '详解 iOS 8 `UIPresentationController` Custom Presentation';
+      var disqus_url = 'http://eleme.io/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -797,6 +771,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   

@@ -1,5 +1,11 @@
 <!doctype html>
-<html class="theme-next   use-motion ">
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -32,7 +38,7 @@
 
 <link href="/mobilists/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/mobilists/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+<link href="/mobilists/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Universal Links,Wechat,iOS," />
@@ -46,7 +52,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
 
 
 
@@ -71,7 +77,7 @@ Universal Links: 文档在这里 ，工作原理，如何实现，直接参考�
 
 但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题
 App Sear">
-<meta property="og:updated_time" content="2016-01-12T02:23:24.000Z">
+<meta property="og:updated_time" content="2016-01-12T02:36:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="突破微信跳转限制－Universal Links那些坑">
 <meta name="twitter:description" content="微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案
@@ -85,10 +91,16 @@ App Sear">
 
 
 <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'post',
-    motion: true
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
   };
 </script>
 
@@ -97,15 +109,6 @@ App Sear">
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
   
 
 
@@ -122,7 +125,14 @@ App Sear">
 
 
 
-  <div class="container one-column page-post-detail">
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -206,6 +216,7 @@ App Sear">
 
       
       
+      
     </ul>
   
 
@@ -217,8 +228,9 @@ App Sear">
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content">
-          
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
     
@@ -249,7 +261,10 @@ App Sear">
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-01-10T21:43:29+08:00" content="2016-01-10">
               2016-01-10
             </time>
@@ -257,7 +272,11 @@ App Sear">
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/mobilists/categories/iOS/" itemprop="url" rel="index">
@@ -275,28 +294,30 @@ App Sear">
           
             
               <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/10/突破微信跳转限制－Universal-Links那些坑/" itemprop="commentsCount"></span>
-              </a>
-            </span>
+                &nbsp; | &nbsp;
+                <a href="/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/10/突破微信跳转限制－Universal-Links那些坑/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
           
 
+          
+          
         </div>
       </header>
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <span itemprop="articleBody"><p>微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案</p>
+        <p>微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案</p>
 <ul>
 <li>WXAppExtendObject: 这个用法自查</li>
 <li>Universal Links: 文档在<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html" target="_blank" rel="external">这里</a> ，工作原理，如何实现，直接参考官方文档即可</li>
@@ -323,7 +344,7 @@ App Sear">
 </ul>
 <p>也就是从iOS 9.2开始，在相同的domain内Universal Links是不work的，必须要跨域才生效，我们实测值需要跨子域名即可，比如 m.domain.com 跳转 o.domain.com 是可以触发跳转App</p>
 <p>Written by 饿了么iOS组 － Bryan</p>
-</span>
+
       
     </div>
 
@@ -352,6 +373,10 @@ App Sear">
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/" rel="prev" title="详解 iOS 8 `UIPresentationController` Custom Presentation">
+                详解 iOS 8 `UIPresentationController` Custom Presentation <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -369,25 +394,26 @@ App Sear">
   </div>
 
 
-        </div>
+          </div>
+          
 
-        
 
-
-        
+          
   <div class="comments" id="comments">
     
       <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
 
 
-      </div>
-
-      
+        </div>
         
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -415,31 +441,37 @@ App Sear">
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/mobilists/images/default_avatar.jpg" alt="" itemprop="image"/>
+          <img class="site-author-image" itemprop="image"
+               src="/mobilists/images/default_avatar.jpg"
+               alt="" />
           <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
-        <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/mobilists/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/mobilists/categories">
-              <span class="site-state-item-count">1</span>
-              <span class="site-state-item-name">分类</span>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/mobilists/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
               </a>
-          </div>
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/mobilists/tags">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/mobilists/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
         </nav>
 
@@ -488,7 +520,8 @@ App Sear">
   </aside>
 
 
-      
+        
+      </div>
     </main>
 
     <footer id="footer" class="footer">
@@ -498,7 +531,7 @@ App Sear">
   &copy; 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder"></span>
 </div>
@@ -522,60 +555,41 @@ App Sear">
     <div class="back-to-top"></div>
   </div>
 
+  
+
+
+  
+
+
+
   <script type="text/javascript" src="/mobilists/vendors/jquery/index.js?v=2.1.3"></script>
 
-  
-  
-
-  
-    
-    
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'elememobileblog';
-      var disqus_identifier = '2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
-      var disqus_title = '突破微信跳转限制－Universal Links那些坑';
-      var disqus_url = 'http://eleme.io/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-  
-
-  
-  <script type="text/javascript" src="/mobilists/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/mobilists/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/mobilists/js/helpers.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/mobilists/vendors/velocity/velocity.min.js"></script>
-<script type="text/javascript" src="/mobilists/vendors/velocity/velocity.ui.min.js"></script>
-
-<script type="text/javascript" src="/mobilists/js/motion.js?v=0.4.5.2" id="motion.global"></script>
-
-
   <script type="text/javascript" src="/mobilists/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
   <script type="text/javascript" src="/mobilists/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  
-  
-<script type="text/javascript" src="/mobilists/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+  <script type="text/javascript" src="/mobilists/vendors/velocity/velocity.min.js"></script>
 
+  <script type="text/javascript" src="/mobilists/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/mobilists/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/mobilists/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/mobilists/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/mobilists/js/src/scrollspy.js?v=0.5.0"></script>
 
 <script type="text/javascript" id="sidebar.toc.highlight">
   $(document).ready(function () {
@@ -709,7 +723,7 @@ App Sear">
 
     $('.post-toc a').on('click', function (e) {
       e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
       var offset = $(targetSelector).offset().top;
       hasVelocity ?
         html.velocity('stop').velocity('scroll', {
@@ -722,11 +736,12 @@ App Sear">
     });
 
     // Expand sidebar on post detail page by default, when post has a toc.
-    motionMiddleWares.sidebar = function () {
+    NexT.motion.middleWares.sidebar = function () {
       var $tocContent = $('.post-toc-content');
+
       if (CONFIG.sidebar === 'post') {
         if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          displaySidebar();
+          NexT.utils.displaySidebar();
         }
       }
     };
@@ -735,13 +750,48 @@ App Sear">
 
 
 
-  <script type="text/javascript" src="/mobilists/js/bootstrap.js"></script>
+  
+
+
+  <script type="text/javascript" src="/mobilists/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'elememobileblog';
+      var disqus_identifier = '2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
+      var disqus_title = '突破微信跳转限制－Universal Links那些坑';
+      var disqus_url = 'http://eleme.io/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
 
   
   
 
   
   
+
 
 </body>
 </html>
