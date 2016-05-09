@@ -41,7 +41,7 @@
 <link href="/mobilists/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Universal Links,Wechat,iOS," />
+  <meta name="keywords" content="iOS,Universal Links,Wechat," />
 
 
 
@@ -52,7 +52,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/mobilists/favicon.ico?v=0.5.0" />
 
 
 
@@ -127,6 +127,8 @@ App Sear">
 
 
 
+
+
   
   
     
@@ -161,7 +163,7 @@ App Sear">
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-categories">
@@ -204,8 +206,6 @@ App Sear">
         </li>
       
 
-      
-      
       
     </ul>
   
@@ -296,6 +296,7 @@ App Sear">
 
           
           
+
         </div>
       </header>
     
@@ -338,15 +339,21 @@ App Sear">
       
     </div>
 
+    <div>
+      
+        
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
+            <a href="/mobilists/tags/iOS/" rel="tag">#iOS</a>
+          
             <a href="/mobilists/tags/Universal-Links/" rel="tag">#Universal Links</a>
           
             <a href="/mobilists/tags/Wechat/" rel="tag">#Wechat</a>
-          
-            <a href="/mobilists/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -436,11 +443,11 @@ App Sear">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/mobilists/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
+
           
             <div class="site-state-item site-state-categories">
               <a href="/mobilists/categories">
@@ -453,7 +460,7 @@ App Sear">
           
             <div class="site-state-item site-state-tags">
               <a href="/mobilists/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -477,7 +484,8 @@ App Sear">
         
         
 
-        <div class="links-of-author motion-element">
+        
+        <div class="links-of-blogroll motion-element">
           
         </div>
 
@@ -538,7 +546,9 @@ App Sear">
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
@@ -546,6 +556,14 @@ App Sear">
 
   
 
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
 
 
   <script type="text/javascript" src="/mobilists/vendors/jquery/index.js?v=2.1.3"></script>
@@ -725,7 +743,7 @@ App Sear">
     NexT.motion.middleWares.sidebar = function () {
       var $tocContent = $('.post-toc-content');
 
-      if (CONFIG.sidebar === 'post') {
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
         if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
           NexT.utils.displaySidebar();
         }
@@ -753,7 +771,7 @@ App Sear">
       var disqus_shortname = 'elememobileblog';
       var disqus_identifier = '2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
       var disqus_title = '突破微信跳转限制－Universal Links那些坑';
-      var disqus_url = 'http://eleme.io/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
+      var disqus_url = 'http://eleme.io/mobilists/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -774,8 +792,8 @@ App Sear">
 
   
   
-
   
+
   
 
 

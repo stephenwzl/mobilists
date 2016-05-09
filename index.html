@@ -52,7 +52,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/mobilists/favicon.ico?v=0.5.0" />
 
 
 
@@ -108,6 +108,8 @@
 
 
 
+
+
   
   
     
@@ -144,7 +146,7 @@
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-categories">
@@ -188,8 +190,6 @@
       
 
       
-      
-      
     </ul>
   
 
@@ -205,11 +205,390 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/mobilists/2016/05/09/testtest/" itemprop="url">
+                  testtest
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T15:21:32+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mobilists/2016/05/09/testtest/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/09/testtest/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>hello!<br>this is a test!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/mobilists/2016/04/12/ReactiveCocoa实践（一）/" itemprop="url">
+                  ReactiveCocoa实践（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-12T11:57:32+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/mobilists/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mobilists/2016/04/12/ReactiveCocoa实践（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/12/ReactiveCocoa实践（一）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ReactiveCocoa(以下简称RAC)是iOS上函数响应式编程（Functional Reactive Programming，FRP）的框架，这个和我们平时面向对象（OOP）的编程方式有挺大的区别。本文通过在项目中使用RAC来实现一个小功能，让大家了解一下RAC。</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>有一个需求，在搜索页搜索时，需要先判断输入内容是否合法（2个字符以上），同时需要500毫秒的延迟，减少用户输入过程中频繁发起请求。这个功能非常适合用RAC来实现。FRP的核心是信号（signal），而输入框文本变化实质是一种信号，我们可以通过对信号的处理来完成这个功能。</p>
+<h1 id="Signal"><a href="#Signal" class="headerlink" title="Signal"></a>Signal</h1><p>RAC中最核心的类RACSignal，是一系列可以被监测的数据流。</p>
+<ul>
+<li>信号类(RACSignal)，只是表示当数据改变时，信号内部会发出数据.</li>
+<li>默认一个信号都是冷信号，也就是值改变了，也不会触发，只有订阅了这个信号，这个信号才会变为热信号，值改变了才会触发。</li>
+<li>如何订阅信号：调用信号RACSignal的subscribeNext就能订阅。</li>
+</ul>
+<p>一个简单例子:</p>
+<figure class="highlight objectivec"><figcaption><span>RACSignal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">  <span class="comment">// block调用时刻：每当有订阅者订阅信号，就会调用block。</span></span><br><span class="line">  <span class="comment">// 发送信号</span></span><br><span class="line">  [subscriber sendNext:@<span class="number">1</span>];</span><br><span class="line">  <span class="comment">// 发送完成信号</span></span><br><span class="line">  [subscriber sendCompleted];</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅信号,才会激活信号.</span></span><br><span class="line">[signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</span><br><span class="line">  <span class="comment">// block调用时刻：每当有信号发出数据，就会调用block.</span></span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@"接收到数据:%@"</span>,x);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>同时也支持使用宏来快速地生成信号</p>
+<figure class="highlight objectivec"><figcaption><span>KVO</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[RACObserve(<span class="keyword">self</span>, searchText) subscribeNext:^(<span class="built_in">NSString</span> *text) &#123;</span><br><span class="line">  <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, text);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p><code>RACObserve</code>通过<code>- (RACSignal *)rac_valuesForKeyPath: observer:</code>来生成了一个信号，<br>其使用了KVO来监听property的变化，只要searchText被自己或外部改变，block就会被执行。只要是支持KVO的property都可以被RACObserve来生成一个信号。</p>
+<h2 id="Operators"><a href="#Operators" class="headerlink" title="Operators"></a>Operators</h2><p>信号的处理是非常方便的，可以被修改(map)，也可以被过滤（filter），还可以被节流(throttle,一段时间内不在发送新的信号)等等。</p>
+<figure class="highlight objectivec"><figcaption><span>Operators</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[[RACObserve(<span class="keyword">self</span>, searchText)</span><br><span class="line">   filter:^<span class="built_in">BOOL</span>(<span class="built_in">NSString</span> *text) &#123;</span><br><span class="line">     <span class="keyword">return</span> text.length &gt; <span class="number">2</span>;</span><br><span class="line">   &#125;]</span><br><span class="line">  throttle:<span class="number">0.5</span>]</span><br><span class="line"> subscribeNext:^(<span class="built_in">NSString</span> *searchText) &#123;</span><br><span class="line">   [<span class="keyword">self</span> search:searchText];</span><br><span class="line"> &#125;];</span><br></pre></td></tr></table></figure>
+<p>以上的代码通过对原始信号的处理（filter,throttle），生成了一下新的信号，过滤了输入字符长度小于等于2，同时在一定500毫秒内，不接收任何信号内容，过了500毫秒才获取最后发送的信号内容发出。</p>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p>当然由于block的循环引用，我们必须像往常一样使用weakSelf，strongSelf。RAC在RACEXTScope.h中定义了 <code>@weakify()</code> 和 <code>@strongify()</code> 来方便我们使用。<code>@weakify()</code>实际上定义了一个_weak的<code>self_weak_</code> 变量，而<code>@strongify()</code>则在block定义了一个指向<code>self_weak_</code>的_strong的self指针。最终代码：</p>
+<figure class="highlight objectivec"><figcaption><span>Final Code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@weakify(<span class="keyword">self</span>);</span><br><span class="line">[[[RACObserve(<span class="keyword">self</span>, searchText)</span><br><span class="line">   filter:^<span class="built_in">BOOL</span>(<span class="built_in">NSString</span> *text) &#123;</span><br><span class="line">     <span class="keyword">return</span> text.length &gt; <span class="number">2</span>;</span><br><span class="line">   &#125;]</span><br><span class="line">  throttle:<span class="number">0.5</span>]</span><br><span class="line"> subscribeNext:^(<span class="built_in">NSString</span> *searchText) &#123;</span><br><span class="line">   @strongify(<span class="keyword">self</span>);</span><br><span class="line">   [<span class="keyword">self</span> search:searchText];</span><br><span class="line"> &#125;]</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Written by 饿了么iOS组 － <a href="https://github.com/zhungxd" target="_blank" rel="external">zhungxd</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/mobilists/2016/03/28/饿了么插件化开发实践（一）/" itemprop="url">
+                  饿了么Android插件化开发实践（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-28T17:18:09+08:00" content="2016-03-28">
+              2016-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/mobilists/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/mobilists/2016/03/28/饿了么插件化开发实践（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/28/饿了么插件化开发实践（一）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="u75DB_u70B9"><a href="#u75DB_u70B9" class="headerlink" title="痛点"></a>痛点</h2><p>随着饿了么APP业务急速的发展，项目组内部各个模块的业务越来越多，同时其他项目组也有在主APP集成的需求，现行的Single Code Repo越来越不适合项目的推进。</p>
+<h4 id="u56E2_u961F_u5185_u90E8_u9700_u6C42"><a href="#u56E2_u961F_u5185_u90E8_u9700_u6C42" class="headerlink" title="团队内部需求"></a>团队内部需求</h4><p>目前饿了么APP是基于业务分成Shopping、Booking、Order、Account、Marketing和Application六个模块，每个模块由相关的开发人员进行负责。APP方法数早就超过了65k，最新发布的5.9.0版本方法数已经到达了85k。</p>
+<pre><code>1、业务量比较复杂，六个模块一共占去了30k
+
+2、为了避免开发中出现大量的boilerplate code，写了很多工具，在compile time 
+   auto generate code
+
+3、业务之外，项目中也依赖了很多团队各位小伙伴写的给力库，比如图片解析、HotFix、ORM
+
+4、同时团队对开源也比较活跃，使用了一些很赞的library，如retrofit、RxJava、OkHttp
+
+5、再加上庞大的Android Support Library
+</code></pre><p>方法数越来越大，codebase也越来越庞大。快速的发版周期，codebase只会越来越庞大，这时来自团队内部推动模块化开发的声音逐渐起来。</p>
+<pre><code>1、不管是开发new feature，还是对代码的重构，引入bug的风险也越来越大
+
+2、虽然基于业务分包，代码逻辑还算比较清晰，但是各个模块的耦合也越来越重
+
+3、在同一repo下开发，一个模块的重构很可能会影响到其他模块，导致小伙伴对refactor code
+   比较谨慎，不利于个人能力的发挥，也不利于项目的发展，这当然不是我们愿意看到的
+</code></pre><h4 id="u516C_u53F8_u5185_u90E8_u9700_u6C42"><a href="#u516C_u53F8_u5185_u90E8_u9700_u6C42" class="headerlink" title="公司内部需求"></a>公司内部需求</h4><p>使用过饿了么APP的同学都知道，饿了么首页有很多运营位，这些运营位有一些是被其他事业部占去的，比如早餐。这些坑位的产品同学也希望他们的页面如丝滑般流畅，对用户体验比较有要求，他们不满足于H5，也不满足于react-native。这种情况下，只能上native code了，但是不同项目组之间有着不同的研发周期，使得我们一起维护一个codebase的想法不大现实。</p>
+<h2 id="Plugin_Dev__u89C4_u5212"><a href="#Plugin_Dev__u89C4_u5212" class="headerlink" title="Plugin Dev 规划"></a>Plugin Dev 规划</h2><p>针对插件化开发的规划，定义了几点需求。</p>
+<pre><code>1、基于模块进行拆分，把一个不易维护的大APP变成多个精简的小APP
+
+2、满足公司内部的需求，为其他团队提供插件支持，最好可以直接把一个独立的APK load起来
+
+3、可随意加载、卸载插件APP
+
+4、插件APP可免升级更新
+
+5、满足不同的研发周期，可降级展示插件APP，如 H5/native随意切换显示
+
+6、隔离插件的crash
+
+7、安全性校验，防止插件被劫持
+</code></pre><h2 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h2><p>面对上面的业务场景，我们就理所当然的走上了插件化的不归路了。所幸2015年国内Android圈迎来了一波开源小高潮，有一些比较成熟的案例和library可供参考，我们饿了么在这条路上不是一个人在奋斗。业务达到一定量级瓶颈，codebase越来越难以维护的场景下，插件化开发是目前比较靠谱的一条路，很多的同学都已经在这路上走了很远，比如携程、360。</p>
+<p>来自wequick的<a href="https://github.com/wequick/Small" target="_blank" rel="external">Small</a>、还有CtripMobile的<a href="https://github.com/CtripMobile/DynamicAPK" target="_blank" rel="external">DynamicAPK</a>都是通过在同一进程中加载，重心放在在资源的冲突解决上；而来自Qihoo360的<a href="https://github.com/Qihoo360/DroidPlugin" target="_blank" rel="external">DroidPlugin</a>的实现则独树一帜，为了避免处理复杂的资源问题，直接一个Plugin对应一个独立的process，构建了一个沙箱，一个运行环境。</p>
+<p>基于不同的实现方式，大致可以把插件化开发的方向分成两个</p>
+<pre><code>1、Host &amp; Plugin in a single process
+
+2、create another process when load a plugin
+</code></pre><p>这是一个开篇文章，后面会针对这两种不同的实现方式分别做详细的分析和解读。有兴趣的同学可以在评论区留言</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -288,6 +667,7 @@
 
           
           
+
         </div>
       </header>
     
@@ -310,7 +690,7 @@
 <p>这些方案都被否决了. 第一种方案, 因为当前页面不仅有两个TableView(食物类别和菜单), 而且要支持左右滚动在”商品”, “评价”, “详情”三个页面切换. 用TableView的header做视差效果是不太可能做到的. 对第二种方案, 是在<code>-[UIScrollViewDelegate scrollViewDidScroll:]</code>中再手动修改其中一个ScrollView的<code>contentOffset</code>, 使得当前的两个scrollView的<code>contentOffset</code>都是正确的, 但是难点是很难去指定手指在屏幕上滑动的时候, 是父view还是子view的UIPanGestureRecognizer手势被响应. 而考虑先禁用其中的一个手势(比如子view的), 先让父View的手势可以驱动父View的<code>contentOffset</code>改变, 直到父view的<code>contentOffset</code>到了某个位置再启用子view的手势, 禁用父view的. 这带来一个问题, 在切换手势的enable的时候, 即使手指没有离开屏幕, 但是手势已经禁用, 导致滚动中断, 除非手指离开屏幕后重新触摸才能再次滚动, 这样的效果比较不流畅, 并且其中的逻辑比较复杂, 不太容易处理. 或者子类UIScrollView和UITableView, 在手势代理<code>gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer</code> 返回YES, 使得两个ScrollView可以同时滚动, 然后在<code>scrollViewDidScroll:</code>中还原其中一个ScrollView的contentOffset. 但是这样导致逻辑变得复杂, 因为视图中的手势太多. 把ScrollView添加为另一个ScrollView的子视图并不推荐.</p>
 <p>最后, 考虑到这个效果订制程度很高, 于是自己去模仿一下UIScrollView的特性.</p>
 <p>首先说明一下视图的结构:<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;ParentViewController.View&gt;</span></span><br><span class="line">   |<span class="string"> &lt;Container&gt; //UIView</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string"> &lt;SegmentView&gt;</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string"> &lt;ScrollView&gt; //仅左右滑动(pagingEnabled)</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;ChildViewController1.View&gt;</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;CategoryListView&gt;</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;FoodListView&gt;</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;ChildViewController2.View&gt;</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;RatingListView&gt;</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;ChildViewController3.View&gt;</span><br><span class="line">   </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;SummaryListView&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>ParentViewController就是从首页Push进入的ViewController, 在它的View上放置了一个Container(一个普通的UIView), Container的上方是SegmentView,下方是一个左右滑动的ScrollView; 在ScrollView上, 从左往右放置了三个ViewController的View; 所有的tableView视图的bounce都禁用. 由于使用了AutoLayout,<br><figure class="highlight objectivec"><figcaption><span>ViewController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Container mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">   make<span class="variable">.left</span><span class="variable">.right</span><span class="variable">.bottom</span><span class="variable">.equalTo</span>(ParentViewController<span class="variable">.View</span>);     </span><br><span class="line">   make<span class="variable">.top</span><span class="variable">.equalTo</span>(ParentViewController<span class="variable">.View</span>)<span class="variable">.offset</span>(topOffset);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure><br>Container的left, right, bottom都对应ParentViewController.View的left,right,bottom, 我们只需要修改topOffset对应的约束, 就可以做出如下的效果:</p>
+<p>ParentViewController就是从首页Push进入的ViewController, 在它的View上放置了一个Container(一个普通的UIView), Container的上方是SegmentView,下方是一个左右滑动的ScrollView; 在ScrollView上, 从左往右放置了三个ViewController的View; 所有的tableView视图的bounce都禁用. 由于使用了AutoLayout,<br><figure class="highlight objectivec"><figcaption><span>ViewController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Container mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">   make.left.right.bottom.equalTo(ParentViewController.View);     </span><br><span class="line">   make.top.equalTo(ParentViewController.View).offset(topOffset);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure><br>Container的left, right, bottom都对应ParentViewController.View的left,right,bottom, 我们只需要修改topOffset对应的约束, 就可以做出如下的效果:</p>
 <img src="/mobilists/2016/03/15/用UIKit-Dynamics模仿UIScrollView/UXRecord_TopConstraint.gif" alt="效果" title="效果">
 <p>为了让交互的所有细节都可控, 我们要把FoodListView, RatingListView, SummaryListView的scrollEnabled设置为NO, 也就是将UIScrollView自带的panGestureRecognizer禁用, 然后在Container上加上自己的PanGestureRecognizer. 这样之后只要是和上下滚动相关的交互(tableView的滚动和Container的top的约束)都由自己实现的PanGestureRecognizer完成. 这么做有两点优势, 一是当在上下滑动的时候PanGestureRecognizer一定会触发, 并且在滑动的时候, 可以精确的控制当前手势的位移是修改Container的顶部约束还是修改当前页面的tableView的contentOffset; 二是在手势结束的时候, 可以获取最后手势的速度<code>-[UIPanGestureRecognizer velocityInView:]</code> 这方便了之后模拟惯性效果.</p>
 <p>在模拟ScrollView的三个特性里面, 最简单的是RubberBanding(橡皮筋效果), 惯性滚动和弹性原理是类似的.</p>
@@ -329,7 +709,7 @@
 <p>DynamicItem的实例可以看作是一个质点, 在垂直方向上, 它的位置(center)可以用来代表Container的位置(top), 也可以用来代表tableView的<code>contentOffset.y</code>, 它的<code>transform</code>属性可以不用考虑. </p>
 <p>无论是修改Container的位置还是tableView的<code>contentOffset</code>, 在惯性或弹性效果的情况下, 只要在action中将约束的值或者<code>contentOffset.y</code>设置为DynamicItem的<code>center.y</code>就可以. UIKit Dynamics自己会在每一帧去修改.</p>
 <p>比如惯性效果下修改Container的顶部约束大概是这样的:</p>
-<figure class="highlight objectivec"><figcaption><span>ViewController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// when pan.state == UIGestureRecognizerStateEnded</span></span><br><span class="line">NVMDynamicItem *item = [NVMDynamicItem new];</span><br><span class="line"><span class="comment">// topOffset表示当前Container距离顶部的距离</span></span><br><span class="line">item<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="number">0</span>, topOffset);</span><br><span class="line"><span class="comment">// velocity是在手势结束的时候获取的竖直方向的手势速度</span></span><br><span class="line"><span class="built_in">UIDynamicItemBehavior</span> *inertialBehavior = [[<span class="built_in">UIDynamicItemBehavior</span> alloc] initWithItems:@[ item ]];</span><br><span class="line">  [inertialBehavior addLinearVelocity:<span class="built_in">CGPointMake</span>(<span class="number">0</span>, velocity) forItem:item];</span><br><span class="line">  <span class="comment">// 通过尝试取2.0比较像系统的效果</span></span><br><span class="line">  inertialBehavior<span class="variable">.resistance</span> = <span class="number">2.0</span>; </span><br><span class="line">  inertialBehavior<span class="variable">.action</span> = ^&#123;</span><br><span class="line">    <span class="built_in">CGFloat</span> itemTop = item<span class="variable">.center</span><span class="variable">.y</span>;</span><br><span class="line">    [Container mas_updateConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">      make<span class="variable">.top</span><span class="variable">.equalTo</span>(ParentViewController<span class="variable">.View</span>)<span class="variable">.offset</span>(itemTop);</span><br><span class="line">  &#125;];</span><br><span class="line">&#125;;</span><br><span class="line">[<span class="keyword">self</span><span class="variable">.animator</span> addBehavior:inertialBehavior];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><figcaption><span>ViewController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// when pan.state == UIGestureRecognizerStateEnded</span></span><br><span class="line">NVMDynamicItem *item = [NVMDynamicItem new];</span><br><span class="line"><span class="comment">// topOffset表示当前Container距离顶部的距离</span></span><br><span class="line">item.center = <span class="built_in">CGPointMake</span>(<span class="number">0</span>, topOffset);</span><br><span class="line"><span class="comment">// velocity是在手势结束的时候获取的竖直方向的手势速度</span></span><br><span class="line"><span class="built_in">UIDynamicItemBehavior</span> *inertialBehavior = [[<span class="built_in">UIDynamicItemBehavior</span> alloc] initWithItems:@[ item ]];</span><br><span class="line">  [inertialBehavior addLinearVelocity:<span class="built_in">CGPointMake</span>(<span class="number">0</span>, velocity) forItem:item];</span><br><span class="line">  <span class="comment">// 通过尝试取2.0比较像系统的效果</span></span><br><span class="line">  inertialBehavior.resistance = <span class="number">2.0</span>; </span><br><span class="line">  inertialBehavior.action = ^&#123;</span><br><span class="line">    <span class="built_in">CGFloat</span> itemTop = item.center.y;</span><br><span class="line">    [Container mas_updateConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">      make.top.equalTo(ParentViewController.View).offset(itemTop);</span><br><span class="line">  &#125;];</span><br><span class="line">&#125;;</span><br><span class="line">[<span class="keyword">self</span>.animator addBehavior:inertialBehavior];</span><br></pre></td></tr></table></figure>
 <p>类似的弹性效果只需使用UIAttachmentBehavior并且设置合适的值, 尝试下来length = 0, damping = 1, frequency = 1.6, 就有不错的回弹效果.<br>修改contentOffset也是类似, 只不过是将在action中修改约束的部分改为修改contentOffset.</p>
 <p>对于速度传递, 完全一样的原理, 唯一的变化就是从获取手势的速度变为获取<code>-[UIDynamicItemBehavior linearVelocityForItem]</code>的线速度, 然后UIDynamicAnimator移除不需要的动画, 按照上面的例子传入速度再次做惯性动画. </p>
 <p>甚至还可以把UIAttachmentBehavior和UIDynamicItemBehavior同时使用, 模仿有初速度的回弹效果.</p>
@@ -348,6 +728,10 @@
 
           
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -441,6 +825,7 @@
 
           
           
+
         </div>
       </header>
     
@@ -476,6 +861,10 @@
 
           
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -569,6 +958,7 @@
 
           
           
+
         </div>
       </header>
     
@@ -586,15 +976,15 @@
 <h1 id="Final_Result"><a href="#Final_Result" class="headerlink" title="Final Result"></a>Final Result</h1><p>下图是 demo 的效果：黄色背景的 view controller （之后简称vc）present 了一个红色背景的 vc，present 的过程是自定义的，红色背景的 vc 被 present 出来后没有占满整个屏幕，周围有一圈黑色半透明背景可以透视看到黄色 vc。<br><img src="/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/final_result.gif" alt="最终的结果" title="最终的结果"></p>
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p>Demo 的效果用 iOS 7 的自定义 presentation 动画的 API 就能够实现，只需要使 presented vc 的背景色是黑色半透明，然后在上面加一个比自己 view 小一圈的红色区域就行。这里我们先不讨论为什么能够用 iOS 7 的 API 实现了，还需要用 iOS 8 的 <code>UIPresentationController</code>，直接先看如何实现。</p>
 <p>我们创建一个 <code>UIPresentationController</code> 的 subclass，在其中自己管理一个 <code>dimmingView</code>（黑色半透明），并 override 一些方法，在 present 的过程中把 presented vc 的 view 的 <code>frame</code> 设置得小一些，并将其加到 <code>dimmingView</code> 上，然后把 <code>dimmingView</code> 加入到视图结构中去。</p>
-<figure class="highlight swift"><figcaption><span>MyPresentationController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPresentationController</span>: <span class="title">UIPresentationController</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">let</span> dimmingView = <span class="type">UIView</span>()</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">init</span>(presentedViewController: <span class="type">UIViewController</span>, presentingViewController: <span class="type">UIViewController</span>) &#123;</span><br><span class="line">    dimmingView.backgroundColor = <span class="type">UIColor</span>.blackColor().colorWithAlphaComponent(<span class="number">0.4</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(presentedViewController: presentedViewController, presentingViewController: presentingViewController)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">frameOfPresentedViewInContainerView</span><span class="params">()</span></span> -&gt; <span class="type">CGRect</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> frame = containerView?.bounds &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="type">CGRectInset</span>(frame, <span class="number">50</span>, <span class="number">50</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">super</span>.frameOfPresentedViewInContainerView()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">containerViewWillLayoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> containerView = containerView <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    dimmingView.frame = containerView.bounds</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">presentationTransitionWillBegin</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span></span><br><span class="line">      <span class="keyword">let</span> containerView = containerView,</span><br><span class="line">      <span class="keyword">let</span> presentedView = presentedView(),</span><br><span class="line">      <span class="keyword">let</span> coordinator = presentingViewController.transitionCoordinator()</span><br><span class="line">      <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    dimmingView.alpha = <span class="number">0.0</span></span><br><span class="line">    containerView.addSubview(dimmingView)</span><br><span class="line">    dimmingView.addSubview(presentedView)</span><br><span class="line">    coordinator.animateAlongsideTransition(&#123; (context) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>.dimmingView.alpha = <span class="number">1.0</span></span><br><span class="line">      &#125;, completion: <span class="literal">nil</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">presentationTransitionDidEnd</span><span class="params">(completed: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> !completed &#123;</span><br><span class="line">      dimmingView.removeFromSuperview()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">dismissalTransitionWillBegin</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> coordinator = presentedViewController.transitionCoordinator() <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    coordinator.animateAlongsideTransition(&#123; (context) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>.dimmingView.alpha = <span class="number">0.0</span></span><br><span class="line">      &#125;, completion: <span class="literal">nil</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">dismissalTransitionDidEnd</span><span class="params">(completed: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> completed &#123;</span><br><span class="line">      dimmingView.removeFromSuperview()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>MyPresentationController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPresentationController</span>: <span class="title">UIPresentationController</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">let</span> dimmingView = <span class="type">UIView</span>()</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">init</span>(presentedViewController: <span class="type">UIViewController</span>, presentingViewController: <span class="type">UIViewController</span>) &#123;</span><br><span class="line">    dimmingView.backgroundColor = <span class="type">UIColor</span>.blackColor().colorWithAlphaComponent(<span class="number">0.4</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(presentedViewController: presentedViewController, presentingViewController: presentingViewController)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">frameOfPresentedViewInContainerView</span><span class="params">()</span></span> -&gt; <span class="type">CGRect</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> frame = containerView?.bounds &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="type">CGRectInset</span>(frame, <span class="number">50</span>, <span class="number">50</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">super</span>.frameOfPresentedViewInContainerView()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">containerViewWillLayoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> containerView = containerView <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    dimmingView.frame = containerView.bounds</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">presentationTransitionWillBegin</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span></span><br><span class="line">      <span class="keyword">let</span> containerView = containerView,</span><br><span class="line">      <span class="keyword">let</span> presentedView = presentedView(),</span><br><span class="line">      <span class="keyword">let</span> coordinator = presentingViewController.transitionCoordinator()</span><br><span class="line">      <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    dimmingView.alpha = <span class="number">0.0</span></span><br><span class="line">    containerView.addSubview(dimmingView)</span><br><span class="line">    dimmingView.addSubview(presentedView)</span><br><span class="line">    coordinator.animateAlongsideTransition(&#123; (context) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>.dimmingView.alpha = <span class="number">1.0</span></span><br><span class="line">      &#125;, completion: <span class="literal">nil</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">presentationTransitionDidEnd</span><span class="params">(completed: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> !completed &#123;</span><br><span class="line">      dimmingView.removeFromSuperview()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">dismissalTransitionWillBegin</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> coordinator = presentedViewController.transitionCoordinator() <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    coordinator.animateAlongsideTransition(&#123; (context) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>.dimmingView.alpha = <span class="number">0.0</span></span><br><span class="line">      &#125;, completion: <span class="literal">nil</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">dismissalTransitionDidEnd</span><span class="params">(completed: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> completed &#123;</span><br><span class="line">      dimmingView.removeFromSuperview()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后我们需要一个 animator，涉及的都是 iOS 7 的 API，这里不多做说明。注意 <code>transitionContext.viewForKey(UITransitionContextToViewKey)</code> 是 iOS 8 新增的 API，这里必须这样来取得 <code>toView</code> 是因为 presentation controller 可能会提供并不是 presented vc 的 view 来用做 presentation。另外 <code>toView</code> 的 <code>finalFrame</code> 同样需要从 context 获取，因为 <code>finalFrame</code> 可以被 <code>UIPresentationController</code> 修改为并不是整个屏幕的大小。</p>
-<figure class="highlight swift"><figcaption><span>TransitioningAnimator</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransitioningAnimator</span>: <span class="title">NSObject</span>, <span class="title">UIViewControllerAnimatedTransitioning</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="func"><span class="keyword">func</span> <span class="title">transitionDuration</span><span class="params">(transitionContext: UIViewControllerContextTransitioning?)</span></span> -&gt; <span class="type">NSTimeInterval</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="func"><span class="keyword">func</span> <span class="title">animateTransition</span><span class="params">(transitionContext: UIViewControllerContextTransitioning)</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span></span><br><span class="line">      <span class="keyword">let</span> toViewController = transitionContext.viewControllerForKey(<span class="type">UITransitionContextToViewControllerKey</span>),</span><br><span class="line">      <span class="keyword">let</span> toView = transitionContext.viewForKey(<span class="type">UITransitionContextToViewKey</span>),</span><br><span class="line">      <span class="keyword">let</span> containerView = transitionContext.containerView()</span><br><span class="line">      <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> finalFrame = transitionContext.finalFrameForViewController(toViewController)</span><br><span class="line">    toView.frame = finalFrame</span><br><span class="line">    toView.transform = <span class="type">CGAffineTransformMakeScale</span>(<span class="number">0.2</span>, <span class="number">0.2</span>)</span><br><span class="line">    toView.alpha = <span class="number">0.0</span></span><br><span class="line">    containerView.addSubview(toView)</span><br><span class="line">    </span><br><span class="line">    <span class="type">UIView</span>.animateWithDuration(transitionDuration(transitionContext), delay: <span class="number">0</span>, usingSpringWithDamping: <span class="number">0.5</span>, initialSpringVelocity: <span class="number">0</span>, options: [], animations: &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">      toView.transform = <span class="type">CGAffineTransformIdentity</span></span><br><span class="line">      toView.alpha = <span class="number">1.0</span></span><br><span class="line">      &#125;) &#123; completed -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        transitionContext.completeTransition(completed)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>TransitioningAnimator</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransitioningAnimator</span>: <span class="title">NSObject</span>, <span class="title">UIViewControllerAnimatedTransitioning</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">transitionDuration</span><span class="params">(transitionContext: UIViewControllerContextTransitioning?)</span></span> -&gt; <span class="type">NSTimeInterval</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">animateTransition</span><span class="params">(transitionContext: UIViewControllerContextTransitioning)</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span></span><br><span class="line">      <span class="keyword">let</span> toViewController = transitionContext.viewControllerForKey(<span class="type">UITransitionContextToViewControllerKey</span>),</span><br><span class="line">      <span class="keyword">let</span> toView = transitionContext.viewForKey(<span class="type">UITransitionContextToViewKey</span>),</span><br><span class="line">      <span class="keyword">let</span> containerView = transitionContext.containerView()</span><br><span class="line">      <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> finalFrame = transitionContext.finalFrameForViewController(toViewController)</span><br><span class="line">    toView.frame = finalFrame</span><br><span class="line">    toView.transform = <span class="type">CGAffineTransformMakeScale</span>(<span class="number">0.2</span>, <span class="number">0.2</span>)</span><br><span class="line">    toView.alpha = <span class="number">0.0</span></span><br><span class="line">    containerView.addSubview(toView)</span><br><span class="line">    </span><br><span class="line">    <span class="type">UIView</span>.animateWithDuration(transitionDuration(transitionContext), delay: <span class="number">0</span>, usingSpringWithDamping: <span class="number">0.5</span>, initialSpringVelocity: <span class="number">0</span>, options: [], animations: &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">      toView.transform = <span class="type">CGAffineTransformIdentity</span></span><br><span class="line">      toView.alpha = <span class="number">1.0</span></span><br><span class="line">      &#125;) &#123; completed -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        transitionContext.completeTransition(completed)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另外还需要一个 <code>TransitioningDelegate</code>，其作用就是提供之前创建的 presentation controller 以及 animator</p>
-<figure class="highlight swift"><figcaption><span>TransitioningDelegate</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransitioningDelegate</span>: <span class="title">NSObject</span>, <span class="title">UIViewControllerTransitioningDelegate</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="func"><span class="keyword">func</span> <span class="title">presentationControllerForPresentedViewController</span><span class="params">(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController)</span></span> -&gt; <span class="type">UIPresentationController</span>? &#123;</span><br><span class="line">    <span class="keyword">let</span> presentationController = <span class="type">MyPresentationController</span>(presentedViewController: presented, presentingViewController: presenting)</span><br><span class="line">    <span class="keyword">return</span> presentationController</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="func"><span class="keyword">func</span> <span class="title">animationControllerForPresentedController</span><span class="params">(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController)</span></span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">    <span class="keyword">let</span> animator = <span class="type">TransitioningAnimator</span>()</span><br><span class="line">    <span class="keyword">return</span> animator;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><figcaption><span>TransitioningDelegate</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransitioningDelegate</span>: <span class="title">NSObject</span>, <span class="title">UIViewControllerTransitioningDelegate</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">presentationControllerForPresentedViewController</span><span class="params">(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController)</span></span> -&gt; <span class="type">UIPresentationController</span>? &#123;</span><br><span class="line">    <span class="keyword">let</span> presentationController = <span class="type">MyPresentationController</span>(presentedViewController: presented, presentingViewController: presenting)</span><br><span class="line">    <span class="keyword">return</span> presentationController</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">animationControllerForPresentedController</span><span class="params">(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController)</span></span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line">    <span class="keyword">let</span> animator = <span class="type">TransitioningAnimator</span>()</span><br><span class="line">    <span class="keyword">return</span> animator;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后，在 present 之前把 <code>TransitioningDelegate</code> 赋值给 presenting 以及 presented vc。</p>
 <figure class="highlight swift"><figcaption><span>黄色vc的按钮触发的方法内</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vc = <span class="type">MyViewController</span>()</span><br><span class="line"><span class="keyword">let</span> myTransitioningDelegate = <span class="type">TransitioningDelegate</span>()</span><br><span class="line">transitioningDelegate = myTransitioningDelegate</span><br><span class="line">vc.transitioningDelegate = myTransitioningDelegate</span><br><span class="line"></span><br><span class="line">presentViewController(vc, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
 <p>通过以上的代码就实现了 demo 所示的效果。你肯定会问，我用 iOS 7 的 animator 一样可以做到啊，这是何苦又要多增加一个类（<code>MyPresentationController</code>）呢？下面我们详细撸一遍 iOS 8 下 present 的过程，撸完之后应该就能够理解了。</p>
-<h1 id="UIPresentationController"><a href="#UIPresentationController" class="headerlink" title="UIPresentationController"></a>UIPresentationController</h1><p>为了便于参考，把 <code>UIPresentationController</code> 的 API 放在这里，可以直接跳到下一章阅读。<br><figure class="highlight swift"><figcaption><span>UIPresentationController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">@available</span>(iOS <span class="number">8.0</span>, *)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UIPresentationController</span> : <span class="title">NSObject</span>, <span class="title">UIAppearanceContainer</span>, <span class="title">UITraitEnvironment</span>, <span class="title">UIContentContainer</span>, <span class="title">UIFocusEnvironment</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> presentingViewController: <span class="type">UIViewController</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> presentedViewController: <span class="type">UIViewController</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> presentationStyle: <span class="type">UIModalPresentationStyle</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// The view in which a presentation occurs. It is an ancestor of both the presenting and presented view controller's views.</span></span><br><span class="line">    <span class="comment">// This view is being passed to the animation controller.</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> containerView: <span class="type">UIView</span>? &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">weak</span> <span class="keyword">public</span> <span class="keyword">var</span> delegate: <span class="type">UIAdaptivePresentationControllerDelegate</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(presentedViewController: <span class="type">UIViewController</span>, presentingViewController: <span class="type">UIViewController</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// By default this implementation defers to the delegate, if one exists, or returns the current presentation style. UIFormSheetPresentationController, and</span></span><br><span class="line">    <span class="comment">// UIPopoverPresentationController override this implementation to return UIModalPresentationStyleFullscreen if the delegate does not provide an</span></span><br><span class="line">    <span class="comment">// implementation for adaptivePresentationStyleForPresentationController:</span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">adaptivePresentationStyle</span><span class="params">()</span></span> -&gt; <span class="type">UIModalPresentationStyle</span></span><br><span class="line">    <span class="preprocessor">@available</span>(iOS <span class="number">8.3</span>, *)</span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">adaptivePresentationStyleForTraitCollection</span><span class="params">(traitCollection: UITraitCollection)</span></span> -&gt; <span class="type">UIModalPresentationStyle</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">containerViewWillLayoutSubviews</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">containerViewDidLayoutSubviews</span><span class="params">()</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// A view that's going to be animated during the presentation. Must be an ancestor of a presented view controller's view</span></span><br><span class="line">    <span class="comment">// or a presented view controller's view itself.</span></span><br><span class="line">    <span class="comment">// (Default: presented view controller's view)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">presentedView</span><span class="params">()</span></span> -&gt; <span class="type">UIView</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Position of the presented view in the container view by the end of the presentation transition.</span></span><br><span class="line">    <span class="comment">// (Default: container view bounds)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">frameOfPresentedViewInContainerView</span><span class="params">()</span></span> -&gt; <span class="type">CGRect</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// By default each new presentation is full screen.</span></span><br><span class="line">    <span class="comment">// This behavior can be overriden with the following method to force a current context presentation.</span></span><br><span class="line">    <span class="comment">// (Default: YES)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">shouldPresentInFullscreen</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Indicate whether the view controller's view we are transitioning from will be removed from the window in the end of the</span></span><br><span class="line">    <span class="comment">// presentation transition</span></span><br><span class="line">    <span class="comment">// (Default: NO)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">shouldRemovePresentersView</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">presentationTransitionWillBegin</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">presentationTransitionDidEnd</span><span class="params">(completed: Bool)</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">dismissalTransitionWillBegin</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="func"><span class="keyword">func</span> <span class="title">dismissalTransitionDidEnd</span><span class="params">(completed: Bool)</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Modifies the trait collection for the presentation controller.</span></span><br><span class="line">    <span class="preprocessor">@NSCopying</span> <span class="keyword">public</span> <span class="keyword">var</span> overrideTraitCollection: <span class="type">UITraitCollection</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="UIPresentationController"><a href="#UIPresentationController" class="headerlink" title="UIPresentationController"></a>UIPresentationController</h1><p>为了便于参考，把 <code>UIPresentationController</code> 的 API 放在这里，可以直接跳到下一章阅读。<br><figure class="highlight swift"><figcaption><span>UIPresentationController</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@available</span>(iOS <span class="number">8.0</span>, *)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UIPresentationController</span> : <span class="title">NSObject</span>, <span class="title">UIAppearanceContainer</span>, <span class="title">UITraitEnvironment</span>, <span class="title">UIContentContainer</span>, <span class="title">UIFocusEnvironment</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> presentingViewController: <span class="type">UIViewController</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> presentedViewController: <span class="type">UIViewController</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> presentationStyle: <span class="type">UIModalPresentationStyle</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// The view in which a presentation occurs. It is an ancestor of both the presenting and presented view controller's views.</span></span><br><span class="line">    <span class="comment">// This view is being passed to the animation controller.</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> containerView: <span class="type">UIView</span>? &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">weak</span> <span class="keyword">public</span> <span class="keyword">var</span> delegate: <span class="type">UIAdaptivePresentationControllerDelegate</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(presentedViewController: <span class="type">UIViewController</span>, presentingViewController: <span class="type">UIViewController</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// By default this implementation defers to the delegate, if one exists, or returns the current presentation style. UIFormSheetPresentationController, and</span></span><br><span class="line">    <span class="comment">// UIPopoverPresentationController override this implementation to return UIModalPresentationStyleFullscreen if the delegate does not provide an</span></span><br><span class="line">    <span class="comment">// implementation for adaptivePresentationStyleForPresentationController:</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">adaptivePresentationStyle</span><span class="params">()</span></span> -&gt; <span class="type">UIModalPresentationStyle</span></span><br><span class="line">    <span class="meta">@available</span>(iOS <span class="number">8.3</span>, *)</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">adaptivePresentationStyleForTraitCollection</span><span class="params">(traitCollection: UITraitCollection)</span></span> -&gt; <span class="type">UIModalPresentationStyle</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">containerViewWillLayoutSubviews</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">containerViewDidLayoutSubviews</span><span class="params">()</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// A view that's going to be animated during the presentation. Must be an ancestor of a presented view controller's view</span></span><br><span class="line">    <span class="comment">// or a presented view controller's view itself.</span></span><br><span class="line">    <span class="comment">// (Default: presented view controller's view)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">presentedView</span><span class="params">()</span></span> -&gt; <span class="type">UIView</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Position of the presented view in the container view by the end of the presentation transition.</span></span><br><span class="line">    <span class="comment">// (Default: container view bounds)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">frameOfPresentedViewInContainerView</span><span class="params">()</span></span> -&gt; <span class="type">CGRect</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// By default each new presentation is full screen.</span></span><br><span class="line">    <span class="comment">// This behavior can be overriden with the following method to force a current context presentation.</span></span><br><span class="line">    <span class="comment">// (Default: YES)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">shouldPresentInFullscreen</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Indicate whether the view controller's view we are transitioning from will be removed from the window in the end of the</span></span><br><span class="line">    <span class="comment">// presentation transition</span></span><br><span class="line">    <span class="comment">// (Default: NO)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">shouldRemovePresentersView</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">presentationTransitionWillBegin</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">presentationTransitionDidEnd</span><span class="params">(completed: Bool)</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">dismissalTransitionWillBegin</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">dismissalTransitionDidEnd</span><span class="params">(completed: Bool)</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Modifies the trait collection for the presentation controller.</span></span><br><span class="line">    <span class="meta">@NSCopying</span> <span class="keyword">public</span> <span class="keyword">var</span> overrideTraitCollection: <span class="type">UITraitCollection</span>?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="The_Presentation_Process"><a href="#The_Presentation_Process" class="headerlink" title="The Presentation Process"></a>The Presentation Process</h1><p>我们来详细解读一下 presentation 的过程：</p>
 <ol>
 <li>我们初始化好将要被 present 的 vc 以及我们的 <code>TransitioningDelegate</code>，并将之赋值给 presenting 及 presented vc，然后通过我们再熟悉不过的 <code>presentViewController:animated:completion:</code> 启动 presentation。</li>
@@ -624,6 +1014,10 @@
 
           
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -717,6 +1111,7 @@
 
           
           
+
         </div>
       </header>
     
@@ -763,6 +1158,10 @@
       
     </div>
 
+    <div>
+      
+    </div>
+
     <footer class="post-footer">
       
 
@@ -777,7 +1176,6 @@
 
 
     
-
   </section>
 
   
@@ -819,11 +1217,11 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/mobilists/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
+
           
             <div class="site-state-item site-state-categories">
               <a href="/mobilists/categories">
@@ -836,7 +1234,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/mobilists/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -860,7 +1258,8 @@
         
         
 
-        <div class="links-of-author motion-element">
+        
+        <div class="links-of-blogroll motion-element">
           
         </div>
 
@@ -904,7 +1303,9 @@
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
@@ -912,6 +1313,14 @@
 
   
 
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
 
 
   <script type="text/javascript" src="/mobilists/vendors/jquery/index.js?v=2.1.3"></script>
@@ -977,8 +1386,8 @@
 
   
   
-
   
+
   
 
 
