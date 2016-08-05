@@ -67,7 +67,7 @@
 <meta property="og:site_name" content="Eleme Mobilists">
 <meta property="og:description" content="痛点随着饿了么APP业务急速的发展，项目组内部各个模块的业务越来越多，同时其他项目组也有在主APP集成的需求，现行的Single Code Repo越来越不适合项目的推进。
 团队内部需求目前饿了么APP是基于业务分成Shopping、Booking、Order、Account、Marketing和Application六个模块，每个模块由相关的开发人员进行负责。APP方法数早就超过了65k，最新发">
-<meta property="og:updated_time" content="2016-04-12T08:30:09.000Z">
+<meta property="og:updated_time" content="2016-05-09T08:18:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="饿了么Android插件化开发实践（一）">
 <meta name="twitter:description" content="痛点随着饿了么APP业务急速的发展，项目组内部各个模块的业务越来越多，同时其他项目组也有在主APP集成的需求，现行的Single Code Repo越来越不适合项目的推进。
@@ -293,8 +293,8 @@
       
 
       
-        <h2 id="u75DB_u70B9"><a href="#u75DB_u70B9" class="headerlink" title="痛点"></a>痛点</h2><p>随着饿了么APP业务急速的发展，项目组内部各个模块的业务越来越多，同时其他项目组也有在主APP集成的需求，现行的Single Code Repo越来越不适合项目的推进。</p>
-<h4 id="u56E2_u961F_u5185_u90E8_u9700_u6C42"><a href="#u56E2_u961F_u5185_u90E8_u9700_u6C42" class="headerlink" title="团队内部需求"></a>团队内部需求</h4><p>目前饿了么APP是基于业务分成Shopping、Booking、Order、Account、Marketing和Application六个模块，每个模块由相关的开发人员进行负责。APP方法数早就超过了65k，最新发布的5.9.0版本方法数已经到达了85k。</p>
+        <h2 id="痛点"><a href="#痛点" class="headerlink" title="痛点"></a>痛点</h2><p>随着饿了么APP业务急速的发展，项目组内部各个模块的业务越来越多，同时其他项目组也有在主APP集成的需求，现行的Single Code Repo越来越不适合项目的推进。</p>
+<h4 id="团队内部需求"><a href="#团队内部需求" class="headerlink" title="团队内部需求"></a>团队内部需求</h4><p>目前饿了么APP是基于业务分成Shopping、Booking、Order、Account、Marketing和Application六个模块，每个模块由相关的开发人员进行负责。APP方法数早就超过了65k，最新发布的5.9.0版本方法数已经到达了85k。</p>
 <pre><code>1、业务量比较复杂，六个模块一共占去了30k
 
 2、为了避免开发中出现大量的boilerplate code，写了很多工具，在compile time 
@@ -312,8 +312,8 @@
 
 3、在同一repo下开发，一个模块的重构很可能会影响到其他模块，导致小伙伴对refactor code
    比较谨慎，不利于个人能力的发挥，也不利于项目的发展，这当然不是我们愿意看到的
-</code></pre><h4 id="u516C_u53F8_u5185_u90E8_u9700_u6C42"><a href="#u516C_u53F8_u5185_u90E8_u9700_u6C42" class="headerlink" title="公司内部需求"></a>公司内部需求</h4><p>使用过饿了么APP的同学都知道，饿了么首页有很多运营位，这些运营位有一些是被其他事业部占去的，比如早餐。这些坑位的产品同学也希望他们的页面如丝滑般流畅，对用户体验比较有要求，他们不满足于H5，也不满足于react-native。这种情况下，只能上native code了，但是不同项目组之间有着不同的研发周期，使得我们一起维护一个codebase的想法不大现实。</p>
-<h2 id="Plugin_Dev__u89C4_u5212"><a href="#Plugin_Dev__u89C4_u5212" class="headerlink" title="Plugin Dev 规划"></a>Plugin Dev 规划</h2><p>针对插件化开发的规划，定义了几点需求。</p>
+</code></pre><h4 id="公司内部需求"><a href="#公司内部需求" class="headerlink" title="公司内部需求"></a>公司内部需求</h4><p>使用过饿了么APP的同学都知道，饿了么首页有很多运营位，这些运营位有一些是被其他事业部占去的，比如早餐。这些坑位的产品同学也希望他们的页面如丝滑般流畅，对用户体验比较有要求，他们不满足于H5，也不满足于react-native。这种情况下，只能上native code了，但是不同项目组之间有着不同的研发周期，使得我们一起维护一个codebase的想法不大现实。</p>
+<h2 id="Plugin-Dev-规划"><a href="#Plugin-Dev-规划" class="headerlink" title="Plugin Dev 规划"></a>Plugin Dev 规划</h2><p>针对插件化开发的规划，定义了几点需求。</p>
 <pre><code>1、基于模块进行拆分，把一个不易维护的大APP变成多个精简的小APP
 
 2、满足公司内部的需求，为其他团队提供插件支持，最好可以直接把一个独立的APK load起来
@@ -327,7 +327,7 @@
 6、隔离插件的crash
 
 7、安全性校验，防止插件被劫持
-</code></pre><h2 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h2><p>面对上面的业务场景，我们就理所当然的走上了插件化的不归路了。所幸2015年国内Android圈迎来了一波开源小高潮，有一些比较成熟的案例和library可供参考，我们饿了么在这条路上不是一个人在奋斗。业务达到一定量级瓶颈，codebase越来越难以维护的场景下，插件化开发是目前比较靠谱的一条路，很多的同学都已经在这路上走了很远，比如携程、360。</p>
+</code></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>面对上面的业务场景，我们就理所当然的走上了插件化的不归路了。所幸2015年国内Android圈迎来了一波开源小高潮，有一些比较成熟的案例和library可供参考，我们饿了么在这条路上不是一个人在奋斗。业务达到一定量级瓶颈，codebase越来越难以维护的场景下，插件化开发是目前比较靠谱的一条路，很多的同学都已经在这路上走了很远，比如携程、360。</p>
 <p>来自wequick的<a href="https://github.com/wequick/Small" target="_blank" rel="external">Small</a>、还有CtripMobile的<a href="https://github.com/CtripMobile/DynamicAPK" target="_blank" rel="external">DynamicAPK</a>都是通过在同一进程中加载，重心放在在资源的冲突解决上；而来自Qihoo360的<a href="https://github.com/Qihoo360/DroidPlugin" target="_blank" rel="external">DroidPlugin</a>的实现则独树一帜，为了避免处理复杂的资源问题，直接一个Plugin对应一个独立的process，构建了一个沙箱，一个运行环境。</p>
 <p>基于不同的实现方式，大致可以把插件化开发的方向分成两个</p>
 <pre><code>1、Host &amp; Plugin in a single process
@@ -446,7 +446,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/mobilists/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -463,7 +463,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/mobilists/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -504,7 +504,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u75DB_u70B9"><span class="nav-number">1.</span> <span class="nav-text">痛点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u56E2_u961F_u5185_u90E8_u9700_u6C42"><span class="nav-number">1.0.1.</span> <span class="nav-text">团队内部需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u516C_u53F8_u5185_u90E8_u9700_u6C42"><span class="nav-number">1.0.2.</span> <span class="nav-text">公司内部需求</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugin_Dev__u89C4_u5212"><span class="nav-number">2.</span> <span class="nav-text">Plugin Dev 规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#痛点"><span class="nav-number">1.</span> <span class="nav-text">痛点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#团队内部需求"><span class="nav-number">1.0.1.</span> <span class="nav-text">团队内部需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公司内部需求"><span class="nav-number">1.0.2.</span> <span class="nav-text">公司内部需求</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plugin-Dev-规划"><span class="nav-number">2.</span> <span class="nav-text">Plugin Dev 规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

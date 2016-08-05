@@ -77,7 +77,7 @@ Universal Links: 文档在这里 ，工作原理，如何实现，直接参考�
 
 但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题
 App Sear">
-<meta property="og:updated_time" content="2016-01-12T02:36:06.000Z">
+<meta property="og:updated_time" content="2016-05-09T08:18:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="突破微信跳转限制－Universal Links那些坑">
 <meta name="twitter:description" content="微信屏蔽了在其内部webview中大部分URL Scheme跳转（除了一个白名单比如点评），目前突破这个限制有两种方案
@@ -314,10 +314,10 @@ App Sear">
 <li>Universal Links: 文档在<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html" target="_blank" rel="external">这里</a> ，工作原理，如何实现，直接参考官方文档即可</li>
 </ul>
 <p>但是我们按照文档支持了Universal Links，却在iOS9.2开始发现不work了，那么下面开始尝试解决问题</p>
-<h2 id="App_Search_API_Validation_Tool"><a href="#App_Search_API_Validation_Tool" class="headerlink" title="App Search API Validation Tool"></a>App Search API Validation Tool</h2><hr>
+<h2 id="App-Search-API-Validation-Tool"><a href="#App-Search-API-Validation-Tool" class="headerlink" title="App Search API Validation Tool"></a>App Search API Validation Tool</h2><hr>
 <p>apple官方有出一个工具－<a href="https://search.developer.apple.com/appsearch-validation-tool/" target="_blank" rel="external">App Search API Validation Tool</a>，这个工具可以测试网站对iOS9 search API的支持，其中包括了对Universal Links的配置检查</p>
 <p>但是这个工具对我们网站检查的结果是 <code>passed</code></p>
-<h2 id="iOS_u7AEF_u8868_u73B0_u5206_u6790"><a href="#iOS_u7AEF_u8868_u73B0_u5206_u6790" class="headerlink" title="iOS端表现分析"></a>iOS端表现分析</h2><hr>
+<h2 id="iOS端表现分析"><a href="#iOS端表现分析" class="headerlink" title="iOS端表现分析"></a>iOS端表现分析</h2><hr>
 <p>iOS 9.2开始具体变现如下：</p>
 <ul>
 <li>Safari中点击符合条件的Link，没有跳转App，但是长按链接能弹出用饿了么打开链接的选项</li>
@@ -325,7 +325,7 @@ App Sear">
 <li>微信中打开对应的web，点击符合条件的Link，没有跳转App</li>
 </ul>
 <p>看起来iOS 9.2肯定是有修改相关的机制，但是Apple并没有提供相应的修改说明（反正我们没有搜到），这个也符合apple一贯的作风</p>
-<h2 id="u7B54_u6848"><a href="#u7B54_u6848" class="headerlink" title="答案"></a>答案</h2><p>感谢 <a href="https://dev.branch.io" target="_blank" rel="external">Branch Metrics</a>，我在<a href="https://dev.branch.io/recipes/branch_universal_links/ios/#which-appsbrowsers-support-universal-links" target="_blank" rel="external">这里</a>找到了答案</p>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>感谢 <a href="https://dev.branch.io" target="_blank" rel="external">Branch Metrics</a>，我在<a href="https://dev.branch.io/recipes/branch_universal_links/ios/#which-appsbrowsers-support-universal-links" target="_blank" rel="external">这里</a>找到了答案</p>
 <p>贴上所有的注意点</p>
 <ul>
 <li>Universal Links will not work if you paste the link into the browser URL field.</li>
@@ -443,7 +443,7 @@ App Sear">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/mobilists/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -460,7 +460,7 @@ App Sear">
           
             <div class="site-state-item site-state-tags">
               <a href="/mobilists/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -501,7 +501,7 @@ App Sear">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#App_Search_API_Validation_Tool"><span class="nav-number">1.</span> <span class="nav-text">App Search API Validation Tool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS_u7AEF_u8868_u73B0_u5206_u6790"><span class="nav-number">2.</span> <span class="nav-text">iOS端表现分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u7B54_u6848"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#App-Search-API-Validation-Tool"><span class="nav-number">1.</span> <span class="nav-text">App Search API Validation Tool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS端表现分析"><span class="nav-number">2.</span> <span class="nav-text">iOS端表现分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">3.</span> <span class="nav-text">答案</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
