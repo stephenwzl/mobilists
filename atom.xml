@@ -2,18 +2,74 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Eleme Mobilists</title>
   
-  <link href="/mobilists/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   
-  <link href="http://eleme.io/mobilists/"/>
-  <updated>2016-08-05T10:24:47.000Z</updated>
-  <id>http://eleme.io/mobilists/</id>
+  <link href="http://mobilists.eleme.io/"/>
+  <updated>2016-09-01T08:11:44.000Z</updated>
+  <id>http://mobilists.eleme.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Amigo---Android hotfix terminator</title>
+    <link href="http://mobilists.eleme.io/2016/08/26/terminator/"/>
+    <id>http://mobilists.eleme.io/2016/08/26/terminator/</id>
+    <published>2016-08-26T04:00:00.000Z</published>
+    <updated>2016-09-01T08:11:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Amigo"><a href="#Amigo" class="headerlink" title="Amigo"></a>Amigo</h2><p><img src="http://amigotheband.com/wp-content/uploads/2015/02/logo_amigo-yellow.png" alt="amigo.png">  </p>
+<p>An old Chinese saying goes: <strong>Road to Jane</strong></p>
+<p>古人有云：<strong>大道至简</strong></p>
+<p>so…</p>
+<h3 id="RTFC"><a href="#RTFC" class="headerlink" title="RTFC"></a>RTFC</h3><p><a href="https://github.com/eleme/amigo" target="_blank" rel="external">Amigo</a> has opened source code in github, so everyone has access to it;</p>
+<p>and we use <strong>Apache License v2.0</strong> as amigo’s license, so everyone can use &amp; modify it.</p>
+<h3 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">classpath <span class="string">'me.ele:amigo:0.0.3'</span></div><div class="line">...</div><div class="line"></div><div class="line">apply <span class="string">plugin:</span> <span class="string">'me.ele.amigo'</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>you are good to go now, as simple as this.</p>
+<h3 id="if-you-don’t-need-hotfix-work-immediately"><a href="#if-you-don’t-need-hotfix-work-immediately" class="headerlink" title="if you don’t need hotfix work immediately"></a>if you don’t need hotfix work immediately</h3><p>you just need to download new apk file to /data/data/{your pkg}/files/amigo/demo.apk,<br>when app restarts next time, hotfix apk will be loaded as fresh as new.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">File hotfixApk = Amigo.getHotfixApk(context);</div></pre></td></tr></table></figure>
+<h3 id="work-immediately-app-will-restart-immediately"><a href="#work-immediately-app-will-restart-immediately" class="headerlink" title="work immediately, app will restart immediately"></a>work immediately, app will restart immediately</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Amigo.work(context);</div><div class="line"></div><div class="line">Amigo.work(context, apkFile);</div></pre></td></tr></table></figure>
+<h3 id="maybe-hotfix-needs-to-be-cleared"><a href="#maybe-hotfix-needs-to-be-cleared" class="headerlink" title="maybe hotfix needs to be cleared"></a>maybe hotfix needs to be cleared</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Amigo.clear(context);</div></pre></td></tr></table></figure>
+<h3 id="some-time-tense-operation-is-handled-in-a-new-process-with-an-activity-you-may-customize-it"><a href="#some-time-tense-operation-is-handled-in-a-new-process-with-an-activity-you-may-customize-it" class="headerlink" title="some time-tense operation is handled in a new process with an activity, you may customize it"></a>some time-tense operation is handled in a new process with an activity, you may customize it</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"amigo_layout"</span></div><div class="line">    <span class="attr">android:value</span>=<span class="string">"&#123;your-layout-name&#125;"</span> /&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"amigo_theme"</span></div><div class="line">    <span class="attr">android:value</span>=<span class="string">"&#123;your-theme-name&#125;"</span> /&gt;</div></pre></td></tr></table></figure>
+<h3 id="now-Amigo-support-to-load-new-Activity-and-BroadcastReceiver"><a href="#now-Amigo-support-to-load-new-Activity-and-BroadcastReceiver" class="headerlink" title="now Amigo support to load new Activity and BroadcastReceiver"></a>now Amigo support to load new Activity and BroadcastReceiver</h3><p>you can add activities &amp; receivers whatever you like to add in your hotfix apk,<br>waiting for <strong>Service</strong> &amp; <strong>ContentProvider</strong></p>
+<p>if you would like to RTFC, please checkout <strong>support_new_added_components</strong> branch</p>
+<p>this’s in <strong>beta</strong> version for now, so you may use this</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">classpath <span class="string">'me.ele:amigo:0.0.1-beta1'</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="play-with-demo"><a href="#play-with-demo" class="headerlink" title="play with demo"></a>play with demo</h3><p>if you try to experience Amigo’s magic, you can integrate with your own app as you like;<br>also you can play with this app demo following the procedures below.</p>
+<ul>
+<li><p>gradle clean assembleRelease &amp; adb install …/build/outputs/apk/app-release.apk</p>
+</li>
+<li><p>change code wherever you like &amp; gradle clean assembleRelease</p>
+</li>
+<li><p>adb push …/build/outputs/apk/app-release.apk /sdcard/demo.apk</p>
+</li>
+<li><p>kill Amigo demo by yourself &amp; restart to check if your change works</p>
+</li>
+</ul>
+<h3 id="license"><a href="#license" class="headerlink" title="license"></a>license</h3><p>  Copyright 2016 ELEME Inc.</p>
+<p>  Licensed under the Apache License, Version 2.0 (the “License”);<br>  you may not use this file except in compliance with the License.<br>  You may obtain a copy of the License at</p>
+<pre><code>http://www.apache.org/licenses/LICENSE-2.0
+</code></pre><p>  Unless required by applicable law or agreed to in writing, software<br>  distributed under the License is distributed on an “AS IS” BASIS,<br>  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br>  See the License for the specific language governing permissions and<br>  limitations under the License.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Amigo&quot;&gt;&lt;a href=&quot;#Amigo&quot; class=&quot;headerlink&quot; title=&quot;Amigo&quot;&gt;&lt;/a&gt;Amigo&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://amigotheband.com/wp-content/uploads/2015/
+    
+    </summary>
+    
+      <category term="Android" scheme="http://mobilists.eleme.io/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://mobilists.eleme.io/tags/Android/"/>
+    
+      <category term="Hotfix" scheme="http://mobilists.eleme.io/tags/Hotfix/"/>
+    
+  </entry>
+  
+  <entry>
     <title>浅谈Mantle</title>
-    <link href="http://eleme.io/mobilists/2016/06/20/%E6%B5%85%E8%B0%88Mantle/"/>
-    <id>http://eleme.io/mobilists/2016/06/20/浅谈Mantle/</id>
+    <link href="http://mobilists.eleme.io/2016/06/20/%E6%B5%85%E8%B0%88Mantle/"/>
+    <id>http://mobilists.eleme.io/2016/06/20/浅谈Mantle/</id>
     <published>2016-06-20T09:12:15.000Z</published>
     <updated>2016-08-05T10:24:47.000Z</updated>
     
@@ -63,19 +119,19 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/categories/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/categories/iOS/"/>
     
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/tags/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/tags/iOS/"/>
     
-      <category term="Mantle" scheme="http://eleme.io/mobilists/tags/Mantle/"/>
+      <category term="Mantle" scheme="http://mobilists.eleme.io/tags/Mantle/"/>
     
   </entry>
   
   <entry>
     <title>ReactiveCocoa实践（一）</title>
-    <link href="http://eleme.io/mobilists/2016/04/12/ReactiveCocoa%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://eleme.io/mobilists/2016/04/12/ReactiveCocoa实践（一）/</id>
+    <link href="http://mobilists.eleme.io/2016/04/12/ReactiveCocoa%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://mobilists.eleme.io/2016/04/12/ReactiveCocoa实践（一）/</id>
     <published>2016-04-12T03:57:32.000Z</published>
     <updated>2016-08-05T11:24:10.000Z</updated>
     
@@ -107,19 +163,19 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/categories/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/categories/iOS/"/>
     
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/tags/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/tags/iOS/"/>
     
-      <category term="ReactiveCocoa" scheme="http://eleme.io/mobilists/tags/ReactiveCocoa/"/>
+      <category term="ReactiveCocoa" scheme="http://mobilists.eleme.io/tags/ReactiveCocoa/"/>
     
   </entry>
   
   <entry>
     <title>饿了么Android插件化开发实践（一）</title>
-    <link href="http://eleme.io/mobilists/2016/03/28/%E9%A5%BF%E4%BA%86%E4%B9%88%E6%8F%92%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://eleme.io/mobilists/2016/03/28/饿了么插件化开发实践（一）/</id>
+    <link href="http://mobilists.eleme.io/2016/03/28/%E9%A5%BF%E4%BA%86%E4%B9%88%E6%8F%92%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://mobilists.eleme.io/2016/03/28/饿了么插件化开发实践（一）/</id>
     <published>2016-03-28T09:18:09.000Z</published>
     <updated>2016-05-09T08:18:39.000Z</updated>
     
@@ -172,25 +228,25 @@
     
     </summary>
     
-      <category term="Android" scheme="http://eleme.io/mobilists/categories/Android/"/>
+      <category term="Android" scheme="http://mobilists.eleme.io/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://eleme.io/mobilists/tags/Android/"/>
+      <category term="Android" scheme="http://mobilists.eleme.io/tags/Android/"/>
     
-      <category term="Plugin" scheme="http://eleme.io/mobilists/tags/Plugin/"/>
+      <category term="Plugin" scheme="http://mobilists.eleme.io/tags/Plugin/"/>
     
-      <category term="插件化" scheme="http://eleme.io/mobilists/tags/%E6%8F%92%E4%BB%B6%E5%8C%96/"/>
+      <category term="插件化" scheme="http://mobilists.eleme.io/tags/%E6%8F%92%E4%BB%B6%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>用UIKit Dynamics模仿UIScrollView</title>
-    <link href="http://eleme.io/mobilists/2016/03/15/%E7%94%A8UIKit-Dynamics%E6%A8%A1%E4%BB%BFUIScrollView/"/>
-    <id>http://eleme.io/mobilists/2016/03/15/用UIKit-Dynamics模仿UIScrollView/</id>
+    <link href="http://mobilists.eleme.io/2016/03/15/%E7%94%A8UIKit-Dynamics%E6%A8%A1%E4%BB%BFUIScrollView/"/>
+    <id>http://mobilists.eleme.io/2016/03/15/用UIKit-Dynamics模仿UIScrollView/</id>
     <published>2016-03-15T10:46:06.000Z</published>
     <updated>2016-05-09T08:18:39.000Z</updated>
     
-    <content type="html"><![CDATA[<p>饿了么在上个版本的时候对餐厅页做了很大的改动, 无论是视觉上还是交互上都有很不错的效果. 为了实现这种效果, 我们自己用UIPanGestureRecognizer和UIKit Dynamics模拟了系统的UIScrollView, 包括惯性滚动, 弹性, 橡皮筋(RubberBanding)效果.<br><img src="/mobilists/2016/03/15/用UIKit-Dynamics模仿UIScrollView/UXRecord.gif" alt="效果" title="效果"></p>
+    <content type="html"><![CDATA[<p>饿了么在上个版本的时候对餐厅页做了很大的改动, 无论是视觉上还是交互上都有很不错的效果. 为了实现这种效果, 我们自己用UIPanGestureRecognizer和UIKit Dynamics模拟了系统的UIScrollView, 包括惯性滚动, 弹性, 橡皮筋(RubberBanding)效果.<br><img src="/2016/03/15/用UIKit-Dynamics模仿UIScrollView/UXRecord.gif" alt="效果" title="效果"></p>
 <p>在刚接到这个任务的时候, 有过几种想法:</p>
 <ol>
 <li>这个效果很像是UITableView加上Header的Parallel效果</li>
@@ -200,7 +256,7 @@
 <p>最后, 考虑到这个效果订制程度很高, 于是自己去模仿一下UIScrollView的特性.</p>
 <p>首先说明一下视图的结构:<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="variable">&lt;ParentViewController.View&gt;</span></div><div class="line">   |<span class="string"> &lt;Container&gt; //UIView</span></div><div class="line">   |<span class="string">    </span>|<span class="string"> &lt;SegmentView&gt;</span></div><div class="line">   |<span class="string">    </span>|<span class="string"> &lt;ScrollView&gt; //仅左右滑动(pagingEnabled)</span></div><div class="line">   |<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;ChildViewController1.View&gt;</span></div><div class="line">   |<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;CategoryListView&gt;</span></div><div class="line">   |<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;FoodListView&gt;</span></div><div class="line">   |<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;ChildViewController2.View&gt;</span></div><div class="line">   |<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;RatingListView&gt;</span></div><div class="line">   |<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;ChildViewController3.View&gt;</span></div><div class="line">   |<span class="string">    </span>|<span class="string">    </span>|<span class="string">    </span>|<span class="string"> &lt;SummaryListView&gt;</span></div></pre></td></tr></table></figure></p>
 <p>ParentViewController就是从首页Push进入的ViewController, 在它的View上放置了一个Container(一个普通的UIView), Container的上方是SegmentView,下方是一个左右滑动的ScrollView; 在ScrollView上, 从左往右放置了三个ViewController的View; 所有的tableView视图的bounce都禁用. 由于使用了AutoLayout,<br><figure class="highlight objectivec"><figcaption><span>ViewController</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[Container mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.left.right.bottom.equalTo(ParentViewController.View);     </div><div class="line">   make.top.equalTo(ParentViewController.View).offset(topOffset);</div><div class="line">&#125;];</div></pre></td></tr></table></figure><br>Container的left, right, bottom都对应ParentViewController.View的left,right,bottom, 我们只需要修改topOffset对应的约束, 就可以做出如下的效果:</p>
-<img src="/mobilists/2016/03/15/用UIKit-Dynamics模仿UIScrollView/UXRecord_TopConstraint.gif" alt="效果" title="效果">
+<img src="/2016/03/15/用UIKit-Dynamics模仿UIScrollView/UXRecord_TopConstraint.gif" alt="效果" title="效果">
 <p>为了让交互的所有细节都可控, 我们要把FoodListView, RatingListView, SummaryListView的scrollEnabled设置为NO, 也就是将UIScrollView自带的panGestureRecognizer禁用, 然后在Container上加上自己的PanGestureRecognizer. 这样之后只要是和上下滚动相关的交互(tableView的滚动和Container的top的约束)都由自己实现的PanGestureRecognizer完成. 这么做有两点优势, 一是当在上下滑动的时候PanGestureRecognizer一定会触发, 并且在滑动的时候, 可以精确的控制当前手势的位移是修改Container的顶部约束还是修改当前页面的tableView的contentOffset; 二是在手势结束的时候, 可以获取最后手势的速度<code>-[UIPanGestureRecognizer velocityInView:]</code> 这方便了之后模拟惯性效果.</p>
 <p>在模拟ScrollView的三个特性里面, 最简单的是RubberBanding(橡皮筋效果), 惯性滚动和弹性原理是类似的.</p>
 <h1 id="RubberBanding"><a href="#RubberBanding" class="headerlink" title="RubberBanding"></a>RubberBanding</h1><p>因为只启用了自定义的pan手势, 在普通情况下, 要修改tableView的contentOffset 或者修改Container的顶部约束, 只需要在<code>pan.state == UIGestureRecognizerStateChanged</code>, 根据<code>[pan translationInView: Container].y</code>获取垂直方向的手势位移, 修改contentOffset或者约束的变化等于手势位移. 至于RubberBanding, 在垂直方向上有两种可能: Container距离顶部超过某个预设的值, 手势继续向下拖动; 或者tableView的拉到底部之后手势继续向上. 这个时候修改<code>contentOffset</code>或者顶部约束的变化小于手势位移(比如乘以一个小于1的因数), 就可以模仿出RubberBanding效果.</p>
@@ -242,21 +298,21 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/categories/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/categories/iOS/"/>
     
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/tags/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/tags/iOS/"/>
     
-      <category term="UIScrollView" scheme="http://eleme.io/mobilists/tags/UIScrollView/"/>
+      <category term="UIScrollView" scheme="http://mobilists.eleme.io/tags/UIScrollView/"/>
     
-      <category term="UIKit Dynamics" scheme="http://eleme.io/mobilists/tags/UIKit-Dynamics/"/>
+      <category term="UIKit Dynamics" scheme="http://mobilists.eleme.io/tags/UIKit-Dynamics/"/>
     
   </entry>
   
   <entry>
     <title>android APP 瘦身</title>
-    <link href="http://eleme.io/mobilists/2016/02/25/android-APP-%E7%98%A6%E8%BA%AB/"/>
-    <id>http://eleme.io/mobilists/2016/02/25/android-APP-瘦身/</id>
+    <link href="http://mobilists.eleme.io/2016/02/25/android-APP-%E7%98%A6%E8%BA%AB/"/>
+    <id>http://mobilists.eleme.io/2016/02/25/android-APP-瘦身/</id>
     <published>2016-02-25T09:18:09.000Z</published>
     <updated>2016-05-09T08:18:39.000Z</updated>
     
@@ -287,26 +343,26 @@
     
     </summary>
     
-      <category term="Android" scheme="http://eleme.io/mobilists/categories/Android/"/>
+      <category term="Android" scheme="http://mobilists.eleme.io/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://eleme.io/mobilists/tags/Android/"/>
+      <category term="Android" scheme="http://mobilists.eleme.io/tags/Android/"/>
     
-      <category term="Shrink" scheme="http://eleme.io/mobilists/tags/Shrink/"/>
+      <category term="Shrink" scheme="http://mobilists.eleme.io/tags/Shrink/"/>
     
-      <category term="APP 瘦身" scheme="http://eleme.io/mobilists/tags/APP-%E7%98%A6%E8%BA%AB/"/>
+      <category term="APP 瘦身" scheme="http://mobilists.eleme.io/tags/APP-%E7%98%A6%E8%BA%AB/"/>
     
   </entry>
   
   <entry>
     <title>详解 iOS 8 `UIPresentationController` Custom Presentation</title>
-    <link href="http://eleme.io/mobilists/2016/02/12/%E8%AF%A6%E8%A7%A3-iOS-8-UIPresentationController-custom-presentation/"/>
-    <id>http://eleme.io/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/</id>
+    <link href="http://mobilists.eleme.io/2016/02/12/%E8%AF%A6%E8%A7%A3-iOS-8-UIPresentationController-custom-presentation/"/>
+    <id>http://mobilists.eleme.io/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/</id>
     <published>2016-02-12T05:28:40.000Z</published>
     <updated>2016-05-09T08:18:39.000Z</updated>
     
     <content type="html"><![CDATA[<p>现在大多数 app 都已经支持 iOS 7+ 有一段时间了，距离支持 iOS 8+ 的时间也是屈指可数（希望如此…）了。iOS 8 新增的 API 中有一个 <code>UIPresentationController</code> 一直比较陌生，本文将简略介绍使用 <code>UIPresentationController</code> 来实现一个自定义 presentation 的过程，然后详细解读 <code>UIKit</code> 是如何操作这一过程以及我们能够如何地参与其中。</p>
-<h1 id="Final-Result"><a href="#Final-Result" class="headerlink" title="Final Result"></a>Final Result</h1><p>下图是 demo 的效果：黄色背景的 view controller （之后简称vc）present 了一个红色背景的 vc，present 的过程是自定义的，红色背景的 vc 被 present 出来后没有占满整个屏幕，周围有一圈黑色半透明背景可以透视看到黄色 vc。<br><img src="/mobilists/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/final_result.gif" alt="最终的结果" title="最终的结果"></p>
+<h1 id="Final-Result"><a href="#Final-Result" class="headerlink" title="Final Result"></a>Final Result</h1><p>下图是 demo 的效果：黄色背景的 view controller （之后简称vc）present 了一个红色背景的 vc，present 的过程是自定义的，红色背景的 vc 被 present 出来后没有占满整个屏幕，周围有一圈黑色半透明背景可以透视看到黄色 vc。<br><img src="/2016/02/12/详解-iOS-8-UIPresentationController-custom-presentation/final_result.gif" alt="最终的结果" title="最终的结果"></p>
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p>Demo 的效果用 iOS 7 的自定义 presentation 动画的 API 就能够实现，只需要使 presented vc 的背景色是黑色半透明，然后在上面加一个比自己 view 小一圈的红色区域就行。这里我们先不讨论为什么能够用 iOS 7 的 API 实现了，还需要用 iOS 8 的 <code>UIPresentationController</code>，直接先看如何实现。</p>
 <p>我们创建一个 <code>UIPresentationController</code> 的 subclass，在其中自己管理一个 <code>dimmingView</code>（黑色半透明），并 override 一些方法，在 present 的过程中把 presented vc 的 view 的 <code>frame</code> 设置得小一些，并将其加到 <code>dimmingView</code> 上，然后把 <code>dimmingView</code> 加入到视图结构中去。</p>
 <figure class="highlight swift"><figcaption><span>MyPresentationController</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPresentationController</span>: <span class="title">UIPresentationController</span> </span>&#123;</div><div class="line">  </div><div class="line">  <span class="keyword">let</span> dimmingView = <span class="type">UIView</span>()</div><div class="line">  </div><div class="line">  <span class="keyword">override</span> <span class="keyword">init</span>(presentedViewController: <span class="type">UIViewController</span>, presentingViewController: <span class="type">UIViewController</span>) &#123;</div><div class="line">    dimmingView.backgroundColor = <span class="type">UIColor</span>.blackColor().colorWithAlphaComponent(<span class="number">0.4</span>)</div><div class="line">    </div><div class="line">    <span class="keyword">super</span>.<span class="keyword">init</span>(presentedViewController: presentedViewController, presentingViewController: presentingViewController)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">frameOfPresentedViewInContainerView</span><span class="params">()</span></span> -&gt; <span class="type">CGRect</span> &#123;</div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> frame = containerView?.bounds &#123;</div><div class="line">      <span class="keyword">return</span> <span class="type">CGRectInset</span>(frame, <span class="number">50</span>, <span class="number">50</span>)</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">super</span>.frameOfPresentedViewInContainerView()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">containerViewWillLayoutSubviews</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> containerView = containerView <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</div><div class="line">    dimmingView.frame = containerView.bounds</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">presentationTransitionWillBegin</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">guard</span></div><div class="line">      <span class="keyword">let</span> containerView = containerView,</div><div class="line">      <span class="keyword">let</span> presentedView = presentedView(),</div><div class="line">      <span class="keyword">let</span> coordinator = presentingViewController.transitionCoordinator()</div><div class="line">      <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</div><div class="line"></div><div class="line">    dimmingView.alpha = <span class="number">0.0</span></div><div class="line">    containerView.addSubview(dimmingView)</div><div class="line">    dimmingView.addSubview(presentedView)</div><div class="line">    coordinator.animateAlongsideTransition(&#123; (context) -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.dimmingView.alpha = <span class="number">1.0</span></div><div class="line">      &#125;, completion: <span class="literal">nil</span>)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">presentationTransitionDidEnd</span><span class="params">(completed: Bool)</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> !completed &#123;</div><div class="line">      dimmingView.removeFromSuperview()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">dismissalTransitionWillBegin</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> coordinator = presentedViewController.transitionCoordinator() <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</div><div class="line">    coordinator.animateAlongsideTransition(&#123; (context) -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line">      <span class="keyword">self</span>.dimmingView.alpha = <span class="number">0.0</span></div><div class="line">      &#125;, completion: <span class="literal">nil</span>)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">dismissalTransitionDidEnd</span><span class="params">(completed: Bool)</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> completed &#123;</div><div class="line">      dimmingView.removeFromSuperview()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -352,23 +408,23 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/categories/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/categories/iOS/"/>
     
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/tags/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/tags/iOS/"/>
     
-      <category term="UIPresentationController" scheme="http://eleme.io/mobilists/tags/UIPresentationController/"/>
+      <category term="UIPresentationController" scheme="http://mobilists.eleme.io/tags/UIPresentationController/"/>
     
-      <category term="Custom Presentation" scheme="http://eleme.io/mobilists/tags/Custom-Presentation/"/>
+      <category term="Custom Presentation" scheme="http://mobilists.eleme.io/tags/Custom-Presentation/"/>
     
-      <category term="iOS 8" scheme="http://eleme.io/mobilists/tags/iOS-8/"/>
+      <category term="iOS 8" scheme="http://mobilists.eleme.io/tags/iOS-8/"/>
     
   </entry>
   
   <entry>
     <title>突破微信跳转限制－Universal Links那些坑</title>
-    <link href="http://eleme.io/mobilists/2016/01/10/%E7%AA%81%E7%A0%B4%E5%BE%AE%E4%BF%A1%E8%B7%B3%E8%BD%AC%E9%99%90%E5%88%B6%EF%BC%8DUniversal-Links%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
-    <id>http://eleme.io/mobilists/2016/01/10/突破微信跳转限制－Universal-Links那些坑/</id>
+    <link href="http://mobilists.eleme.io/2016/01/10/%E7%AA%81%E7%A0%B4%E5%BE%AE%E4%BF%A1%E8%B7%B3%E8%BD%AC%E9%99%90%E5%88%B6%EF%BC%8DUniversal-Links%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
+    <id>http://mobilists.eleme.io/2016/01/10/突破微信跳转限制－Universal-Links那些坑/</id>
     <published>2016-01-10T13:43:29.000Z</published>
     <updated>2016-05-09T08:18:39.000Z</updated>
     
@@ -410,14 +466,14 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/categories/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/categories/iOS/"/>
     
     
-      <category term="iOS" scheme="http://eleme.io/mobilists/tags/iOS/"/>
+      <category term="iOS" scheme="http://mobilists.eleme.io/tags/iOS/"/>
     
-      <category term="Universal Links" scheme="http://eleme.io/mobilists/tags/Universal-Links/"/>
+      <category term="Universal Links" scheme="http://mobilists.eleme.io/tags/Universal-Links/"/>
     
-      <category term="Wechat" scheme="http://eleme.io/mobilists/tags/Wechat/"/>
+      <category term="Wechat" scheme="http://mobilists.eleme.io/tags/Wechat/"/>
     
   </entry>
   

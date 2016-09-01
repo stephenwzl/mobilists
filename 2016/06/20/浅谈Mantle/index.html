@@ -27,7 +27,7 @@
 
 
 
-  <link href="/mobilists/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
@@ -36,9 +36,9 @@
 
 
 
-<link href="/mobilists/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/mobilists/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="iOS,Mantle," />
@@ -47,12 +47,12 @@
 
 
 
-  <link rel="alternate" href="/mobilists/atom.xml" title="Eleme Mobilists" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Eleme Mobilists" type="application/atom+xml" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/mobilists/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
 
 
 
@@ -63,7 +63,7 @@
 解析过程Mantle的核心类是MTLJSONAdapter，负责整个解析过程。下面以JSON To Object为例粗略介绍一下的解析流程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈Mantle">
-<meta property="og:url" content="http://eleme.io/mobilists/2016/06/20/浅谈Mantle/index.html">
+<meta property="og:url" content="http://mobilists.eleme.io/2016/06/20/浅谈Mantle/index.html">
 <meta property="og:site_name" content="Eleme Mobilists">
 <meta property="og:description" content="在公司使用Mantle也差不多有一年，其间有痛有笑，难一一道明。使用期间总算积累了一些经验，在此献丑，或能有益于人；由于是一些知识点的汇总，难免拉杂干涩，写的断断续续，行文并不流畅。所有索引都随文给出，不另外附录；建议核心部分，结合代码理解。另如有错漏，祈谅！
 解析过程Mantle的核心类是MTLJSONAdapter，负责整个解析过程。下面以JSON To Object为例粗略介绍一下的解析流程">
@@ -127,7 +127,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/mobilists/"  class="brand" rel="start">
+    <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">Eleme Mobilists</span>
       <span class="logo-line-after"><i></i></span>
@@ -152,7 +152,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/mobilists/categories" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
             
@@ -162,7 +162,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/mobilists/tags" rel="section">
+          <a href="/tags" rel="section">
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
@@ -172,7 +172,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/mobilists/archives" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
@@ -182,7 +182,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/mobilists/about" rel="section">
+          <a href="/about" rel="section">
             
               <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
@@ -254,7 +254,7 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/mobilists/categories/iOS/" itemprop="url" rel="index">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
                     <span itemprop="name">iOS</span>
                   </a>
                 </span>
@@ -270,7 +270,7 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/mobilists/2016/06/20/浅谈Mantle/#comments" itemprop="discussionUrl">
+                <a href="/2016/06/20/浅谈Mantle/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/20/浅谈Mantle/" itemprop="commentsCount"></span>
                 </a>
               </span>
@@ -345,9 +345,9 @@
       
         <div class="post-tags">
           
-            <a href="/mobilists/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/mobilists/tags/Mantle/" rel="tag">#Mantle</a>
+            <a href="/tags/Mantle/" rel="tag">#Mantle</a>
           
         </div>
       
@@ -356,13 +356,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/mobilists/2016/04/12/ReactiveCocoa实践（一）/" rel="next" title="ReactiveCocoa实践（一）">
+              <a href="/2016/04/12/ReactiveCocoa实践（一）/" rel="next" title="ReactiveCocoa实践（一）">
                 <i class="fa fa-chevron-left"></i> ReactiveCocoa实践（一）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/26/terminator/" rel="prev" title="Amigo---Android hotfix terminator">
+                Amigo---Android hotfix terminator <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -429,22 +433,22 @@
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/mobilists/images/default_avatar.jpg"
+               src="/images/default_avatar.jpg"
                alt="" />
           <p class="site-author-name" itemprop="name"></p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/mobilists/archives">
-              <span class="site-state-item-count">7</span>
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              <a href="/mobilists/categories">
+              <a href="/categories">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -453,8 +457,8 @@
 
           
             <div class="site-state-item site-state-tags">
-              <a href="/mobilists/tags">
-                <span class="site-state-item-count">15</span>
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -464,7 +468,7 @@
 
         
           <div class="feed-link motion-element">
-            <a href="/mobilists/atom.xml" rel="alternate">
+            <a href="/atom.xml" rel="alternate">
               <i class="fa fa-rss"></i>
               RSS
             </a>
@@ -560,34 +564,34 @@
 </script>
 
 
-  <script type="text/javascript" src="/mobilists/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
-  <script type="text/javascript" src="/mobilists/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  <script type="text/javascript" src="/mobilists/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/mobilists/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
 
-  <script type="text/javascript" src="/mobilists/vendors/velocity/velocity.ui.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/mobilists/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/mobilists/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/mobilists/js/src/motion.js?v=0.5.0"></script>
-
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
   
 
   
   
-<script type="text/javascript" src="/mobilists/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
 
 <script type="text/javascript" id="sidebar.toc.highlight">
   $(document).ready(function () {
@@ -751,7 +755,7 @@
   
 
 
-  <script type="text/javascript" src="/mobilists/js/src/bootstrap.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
 
 
 
@@ -765,7 +769,7 @@
       var disqus_shortname = 'elememobileblog';
       var disqus_identifier = '2016/06/20/浅谈Mantle/';
       var disqus_title = '浅谈Mantle';
-      var disqus_url = 'http://eleme.io/mobilists/mobilists/2016/06/20/浅谈Mantle/';
+      var disqus_url = 'http://mobilists.eleme.io/2016/06/20/浅谈Mantle/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
