@@ -263,9 +263,9 @@ Element 就是对 Dex 的封装。所以一个 Element 对应一个 Dex。这个
     
       <category term="Android" scheme="http://mobilists.eleme.io/tags/Android/"/>
     
-      <category term="Hotfix" scheme="http://mobilists.eleme.io/tags/Hotfix/"/>
-    
       <category term="Amigo" scheme="http://mobilists.eleme.io/tags/Amigo/"/>
+    
+      <category term="Hotfix" scheme="http://mobilists.eleme.io/tags/Hotfix/"/>
     
   </entry>
   
