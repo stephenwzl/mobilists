@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mobilists.eleme.io/"/>
-  <updated>2017-01-11T15:06:48.000Z</updated>
+  <updated>2017-01-11T15:10:06.000Z</updated>
   <id>http://mobilists.eleme.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -15,7 +15,7 @@
     <link href="http://mobilists.eleme.io/2017/01/11/%E4%BD%BF%E7%94%A8%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E8%A7%A3%E5%86%B3%E5%A4%9A%E5%8F%AF%E9%80%89%E5%8F%82%E6%95%B0%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98/"/>
     <id>http://mobilists.eleme.io/2017/01/11/使用链式调用解决多可选参数接口设计问题/</id>
     <published>2017-01-11T14:25:00.000Z</published>
-    <updated>2017-01-11T15:06:48.000Z</updated>
+    <updated>2017-01-11T15:10:06.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>我们在 coding 的征途中，总会写下几个（or 几十个?）<code>xxxUtils</code> 之类的东西。想象有这样一个 <code>NVMImageUtils</code>，一开始它的接口是这样的：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ (<span class="built_in">UIImage</span> *)imageWithSize:(<span class="built_in">CGSize</span>)size color:(<span class="built_in">UIColor</span> *)<span class="built_in">UIColor</span> &#123;</div><div class="line">  <span class="comment">// IMP</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -37,7 +37,7 @@
 <p>依此类推，我们可以用这样的思路添加任意的可选参数。</p>
 <p>最后，<code>make</code> 方法综合所有得到的参数，绘制成图片返回（实现忽略，不是本篇重点），最终得以通过链式调用得到图片：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvm_beginImage(size).fillColor(color).make;</div></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>代码地址：<a href="https://github.com/eleme/NVMImageMaker。可以直接通过" target="_blank" rel="external">https://github.com/eleme/NVMImageMaker。可以直接通过</a> pod 使用，当然实现并不复杂，大可自行实现。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>代码地址：<a href="https://github.com/eleme/NVMImageMaker" target="_blank" rel="external">https://github.com/eleme/NVMImageMaker</a>。可以直接通过 pod 使用，当然实现并不复杂，大可自行实现。</p>
 <p>至此，我们有了一个全新的思路，用来解决开篇演示的，让人越来越 hold 不住的多可选参数接口的设计问题。</p>
 <hr>
 <p>Written by 饿了么iOS组 － <a href="https://github.com/axl411" target="_blank" rel="external">axl411</a></p>
